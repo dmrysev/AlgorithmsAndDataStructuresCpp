@@ -3,7 +3,7 @@
 
 #include <stack>
 
-namespace AlgorithmsAndDataStructures::Stack::CheckBrackets {
+namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets {
 
 using namespace Util::Collection;
 

@@ -2,7 +2,7 @@
 
 #include "stack/check_brackets.hpp"
 
-namespace AlgorithmsAndDataStructures::Stack::CheckBrackets::Test {
+namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets::Test {
 
 TEST(Stack_CheckBrackets, checkBrackets) {
     ASSERT_TRUE(checkBrackets(""));

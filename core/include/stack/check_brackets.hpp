@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace AlgorithmsAndDataStructures::Stack::CheckBrackets {
+namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets {
 
 bool checkBrackets(std::string brackets);
 
