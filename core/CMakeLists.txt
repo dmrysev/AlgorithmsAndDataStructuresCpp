@@ -1,5 +1,5 @@
 set(SUBPROJECT_NAME Core)
-file(GLOB_RECURSE SRC_LIST src/*.cpp src/*.hpp)
+file(GLOB_RECURSE SRC_LIST src/*.cpp src/*.hpp include/*.h)
 add_library(${PROJECT_NAME}${SUBPROJECT_NAME} SHARED ${SRC_LIST})
 add_library(${PROJECT_NAME}::${SUBPROJECT_NAME} ALIAS ${PROJECT_NAME}${SUBPROJECT_NAME})
 target_link_libraries(${PROJECT_NAME}${SUBPROJECT_NAME}

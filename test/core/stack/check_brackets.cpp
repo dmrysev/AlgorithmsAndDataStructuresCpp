@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "stack/check_brackets.hpp"
+#include "stack/check_brackets.h"
 
 namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets::Test {
 

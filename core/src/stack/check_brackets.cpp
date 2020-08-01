@@ -1,4 +1,4 @@
-#include "stack/check_brackets.hpp"
+#include "stack/check_brackets.h"
 #include "util/collection.h"
 
 #include <stack>
