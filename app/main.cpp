@@ -1,5 +1,5 @@
 #include <iostream>
-#include "my_dynamic_lib/multiplication.hpp"
+#include "stack/multiplication.hpp"
 
 using namespace AlgorithmsAndDataStructures;
 

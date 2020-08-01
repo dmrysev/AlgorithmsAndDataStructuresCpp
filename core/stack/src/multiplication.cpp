@@ -1,4 +1,4 @@
-#include "my_dynamic_lib/multiplication.hpp"
+#include "stack/multiplication.hpp"
 #include <iostream>
 
 namespace AlgorithmsAndDataStructures::MyDynamicLib::Multiplication {
