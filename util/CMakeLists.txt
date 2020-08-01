@@ -1,9 +1,6 @@
-set(SUBPROJECT_NAME Stack)
+set(SUBPROJECT_NAME Util)
 file(GLOB_RECURSE SRC_LIST src/*.cpp src/*.hpp)
 add_library(${PROJECT_NAME}${SUBPROJECT_NAME} SHARED ${SRC_LIST})
 add_library(${PROJECT_NAME}::${SUBPROJECT_NAME} ALIAS ${PROJECT_NAME}${SUBPROJECT_NAME})
-target_link_libraries(${PROJECT_NAME}${SUBPROJECT_NAME}
-    PRIVATE
-        ${PROJECT_NAME}::Util)
 target_include_directories(${PROJECT_NAME}${SUBPROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_include_directories(${PROJECT_NAME}${SUBPROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)

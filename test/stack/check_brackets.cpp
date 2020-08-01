@@ -4,7 +4,20 @@
 
 namespace AlgorithmsAndDataStructures::Stack::CheckBrackets::Test {
 
-TEST(Stack_CheckBrackets, tableTest) {
+TEST(Stack_CheckBrackets, isReversedBracket) {
+    ASSERT_TRUE(isReversedBracket('{', '}'));
+    ASSERT_TRUE(isReversedBracket('[', ']'));
+    ASSERT_TRUE(isReversedBracket('(', ')'));
+
+    ASSERT_FALSE(isReversedBracket('}', '{'));
+    ASSERT_FALSE(isReversedBracket(']', '['));
+    ASSERT_FALSE(isReversedBracket(')', '('));
+    ASSERT_FALSE(isReversedBracket('{', ')'));
+    ASSERT_FALSE(isReversedBracket('{', ']'));
+}
+
+TEST(Stack_CheckBrackets, checkBrackets) {
+    ASSERT_TRUE(checkBrackets(""));
     ASSERT_TRUE(checkBrackets("[{}]"));
     ASSERT_TRUE(checkBrackets("(()())"));
     ASSERT_TRUE(checkBrackets("[]{}({})"));
