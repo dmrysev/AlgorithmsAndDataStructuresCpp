@@ -1,2 +1,1 @@
-# cpp_template
-cmake c++ project template
+Algorithms and data structures in c++
