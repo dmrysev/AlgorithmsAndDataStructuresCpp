@@ -1,11 +1,10 @@
 #include <iostream>
-#include "stack/multiplication.hpp"
+#include "heap/working_with_std_heap.h"
 
-using namespace AlgorithmsAndDataStructures;
+using namespace AlgorithmsAndDataStructures::Core;
 
 int main() {
-    double result2 = MyDynamicLib::Multiplication::multBy2(3);
-    std::cout << "3 * 2 = " << result2 << std::endl;
+    Heap::WorkingWithStdHeap::stdHeapTest();
 
     return 0;
 }
