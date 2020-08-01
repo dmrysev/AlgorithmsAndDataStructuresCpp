@@ -14,7 +14,6 @@ list(APPEND CMAKE_MODULE_PATH
 include_directories(BEFORE "${CMAKE_CURRENT_SOURCE_DIR}/ext/include")
 
 add_subdirectory(app)
-add_subdirectory(core/my_static_lib)
 add_subdirectory(core/my_dynamic_lib)
 add_subdirectory(test)
 add_subdirectory(ext EXCLUDE_FROM_ALL)
