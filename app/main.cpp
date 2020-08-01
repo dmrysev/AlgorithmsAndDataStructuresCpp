@@ -1,10 +1,10 @@
 #include <iostream>
-#include "heap/working_with_std_heap.h"
+#include "linked_list/working_with_std_list.h"
 
 using namespace AlgorithmsAndDataStructures::Core;
 
 int main() {
-    Heap::WorkingWithStdHeap::stdHeapTest();
+    LinkedList::WorkingWithStdList::stdListTest();
 
     return 0;
 }
