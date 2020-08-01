@@ -4,7 +4,7 @@
 
 namespace AlgorithmsAndDataStructures::Stack::CheckBrackets {
 
-bool isReversedBracket(char bracket1, char bracket2);
+bool isClosingsBrackets(char openingBracket, char closingBracket2);
 bool checkBrackets(std::string brackets);
 
 }

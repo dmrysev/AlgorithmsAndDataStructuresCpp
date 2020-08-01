@@ -7,17 +7,17 @@ namespace AlgorithmsAndDataStructures::Stack::CheckBrackets {
 
 using namespace Util::Collection;
 
-bool isReversedBracket(char bracket1, char bracket2) {
-    if(bracket1 == '{' && bracket2 == '}') return true;
-    else if(bracket1 == '[' && bracket2 == ']') return true;
-    else if(bracket1 == '(' && bracket2 == ')') return true;
+bool isClosingsBrackets(char openingBracket, char closingBracket2) {
+    if(openingBracket == '{' && closingBracket2 == '}') return true;
+    else if(openingBracket == '[' && closingBracket2 == ']') return true;
+    else if(openingBracket == '(' && closingBracket2 == ')') return true;
     return false;
 }
 
 bool checkBrackets(std::string brackets) {
     std::stack<char> bracketsStack;
     for(char bracket: brackets) {
-        if(!bracketsStack.empty() && isReversedBracket(bracketsStack.top(), bracket)) {
+        if(!bracketsStack.empty() && isClosingsBrackets(bracketsStack.top(), bracket)) {
             bracketsStack.pop();
         }
         else {
