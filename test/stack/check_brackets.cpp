@@ -21,6 +21,7 @@ TEST(Stack_CheckBrackets, checkBrackets) {
     ASSERT_TRUE(checkBrackets("[{}]"));
     ASSERT_TRUE(checkBrackets("(()())"));
     ASSERT_TRUE(checkBrackets("[]{}({})"));
+    ASSERT_TRUE(checkBrackets("[[{}]()]"));
 
     ASSERT_FALSE(checkBrackets("{]"));
     ASSERT_FALSE(checkBrackets("[()]))()"));
