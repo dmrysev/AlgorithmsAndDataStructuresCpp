@@ -3,7 +3,7 @@ add_executable(${PROJECT_NAME} ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME}
     PRIVATE
-        ${PROJECT_NAME}::MyDynamicLib)
+        ${PROJECT_NAME}::Stack)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_DEPENDS_NO_SHARED true)
 
