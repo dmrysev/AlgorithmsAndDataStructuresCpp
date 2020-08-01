@@ -23,8 +23,9 @@ void stdListTest() {
 
     // Iterate and print values of the list
     for (int n : l) {
-        std::cout << n << '\n';
+        std::cout << n << ' ';
     }
+    std::cout << std::endl;
 }
 
 }
