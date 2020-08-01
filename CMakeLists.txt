@@ -14,7 +14,7 @@ list(APPEND CMAKE_MODULE_PATH
 include_directories(BEFORE "${CMAKE_CURRENT_SOURCE_DIR}/ext/include")
 
 add_subdirectory(app)
-add_subdirectory(core/stack)
+add_subdirectory(core)
 add_subdirectory(util)
 add_subdirectory(test)
 add_subdirectory(ext EXCLUDE_FROM_ALL)
