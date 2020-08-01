@@ -4,16 +4,16 @@
 
 namespace AlgorithmsAndDataStructures::Stack::CheckBrackets::Test {
 
-TEST(Stack_CheckBrackets, isClosingsBrackets) {
-    ASSERT_TRUE(isClosingsBrackets('{', '}'));
-    ASSERT_TRUE(isClosingsBrackets('[', ']'));
-    ASSERT_TRUE(isClosingsBrackets('(', ')'));
+TEST(Stack_CheckBrackets, isClosingBracket) {
+    ASSERT_TRUE(isClosingBracket('{', '}'));
+    ASSERT_TRUE(isClosingBracket('[', ']'));
+    ASSERT_TRUE(isClosingBracket('(', ')'));
 
-    ASSERT_FALSE(isClosingsBrackets('}', '{'));
-    ASSERT_FALSE(isClosingsBrackets(']', '['));
-    ASSERT_FALSE(isClosingsBrackets(')', '('));
-    ASSERT_FALSE(isClosingsBrackets('{', ')'));
-    ASSERT_FALSE(isClosingsBrackets('{', ']'));
+    ASSERT_FALSE(isClosingBracket('}', '{'));
+    ASSERT_FALSE(isClosingBracket(']', '['));
+    ASSERT_FALSE(isClosingBracket(')', '('));
+    ASSERT_FALSE(isClosingBracket('{', ')'));
+    ASSERT_FALSE(isClosingBracket('{', ']'));
 }
 
 TEST(Stack_CheckBrackets, checkBrackets) {
