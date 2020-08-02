@@ -1,10 +1,10 @@
 #include <iostream>
-#include "linked_list/working_with_std_list.h"
+#include "priority_queue/working_with_std_priority_queue.h"
 
 using namespace AlgorithmsAndDataStructures::Core;
 
 int main() {
-    LinkedList::WorkingWithStdList::stdListTest();
+    PriorityQueue::WorkingWithStdPriorityQueue::stdPriorityQueueTest();
 
     return 0;
 }
