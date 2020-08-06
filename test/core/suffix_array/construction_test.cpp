@@ -3,7 +3,7 @@
 
 #include "suffix_array.h"
 
-namespace AlgorithmsAndDataStructures::Core::SuffixArray::Test {
+namespace AlgorithmsAndDataStructures::SuffixArray::Test {
 
 using testing::ElementsAre;
 

@@ -4,7 +4,7 @@
 #include "suffix_array.h"
 
 using namespace std::chrono;
-using namespace AlgorithmsAndDataStructures::Core;
+using namespace AlgorithmsAndDataStructures;
 
 int main() {
     std::mt19937 generator{std::random_device{}()};
