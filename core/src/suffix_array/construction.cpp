@@ -5,16 +5,16 @@
 namespace AlgorithmsAndDataStructures::Core::SuffixArray::Construction {
 
 std::vector<size_t> initSuffixArray(const std::string& str) {
-    std::set<std::pair<std::string, size_t> > suffices;
+    auto compare = [&](size_t a, size_t b) {
+        std::string suffixA = str.substr(a, str.size());
+        std::string suffixB = str.substr(b, str.size());
+        return suffixA < suffixB;
+    };
+    std::set<size_t, decltype(compare)> suffices(compare);
     for(size_t i = 0; i < str.size(); i++) {
-        suffices.insert({ str.substr(i, str.size()), i });
+        suffices.insert(i);
     }
-    std::vector<size_t> suffixArray(suffices.size());
-    size_t i = 0;
-    for(auto& [suffix, index]: suffices) {
-        suffixArray[i++] = index;
-    }
-    return suffixArray;
+    return {suffices.begin(), suffices.end()};
 }
 
 
