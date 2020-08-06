@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <random>
-#include "suffix_array/construction.h"
+#include "suffix_array.h"
 
 using namespace std::chrono;
 using namespace AlgorithmsAndDataStructures::Core;
@@ -13,7 +13,7 @@ int main() {
     std::string rand_str(size, '\0');
     for(char& dis: rand_str) dis = static_cast<char>(distribution(generator));
     auto begin = high_resolution_clock::now();
-    auto suffixArray = SuffixArray::Construction::initSuffixArray(rand_str);
+    auto suffixArray = SuffixArray::initSuffixArray(rand_str);
     auto elapsed = high_resolution_clock::now() - begin;
     std::cout << duration_cast<milliseconds>(elapsed).count() << std::endl;
     return 0;

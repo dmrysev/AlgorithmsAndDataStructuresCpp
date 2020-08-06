@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-#include "suffix_array/construction.h"
+#include "suffix_array.h"
 
-namespace AlgorithmsAndDataStructures::Core::SuffixArray::Construction::Test {
+namespace AlgorithmsAndDataStructures::Core::SuffixArray::Test {
 
 using testing::ElementsAre;
 
