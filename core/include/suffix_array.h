@@ -11,4 +11,7 @@ std::vector<size_t> initLongestCommonPrefixArray(
     const std::vector<size_t>& suffixArray,
     const std::string& str);
 
+std::vector<size_t> initLongestCommonPrefixArray(const std::string& str);
+
 }
+

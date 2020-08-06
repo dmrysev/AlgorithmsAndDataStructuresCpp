@@ -17,4 +17,8 @@ TEST(SuffixArray, initSuffixArray) {
     ASSERT_THAT(initSuffixArray("ababbab"), ElementsAre(5, 0, 2, 6, 4, 1, 3));
 }
 
+TEST(SuffixArray, initLongestCommonPrefixArray) {
+    ASSERT_THAT(initLongestCommonPrefixArray("ababbab"), ElementsAre(0,2,2,0,1,3,1));
+}
+
 }

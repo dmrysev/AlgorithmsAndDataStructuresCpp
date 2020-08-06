@@ -27,5 +27,10 @@ std::vector<size_t> initLongestCommonPrefixArray(
     return {};
 }
 
+std::vector<size_t> initLongestCommonPrefixArray(const std::string& str) {
+    auto suffixArray = initSuffixArray(str);
+    return initLongestCommonPrefixArray(suffixArray, str);
+}
+
 
 }
