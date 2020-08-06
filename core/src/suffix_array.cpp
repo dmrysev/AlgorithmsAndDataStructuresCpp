@@ -27,13 +27,7 @@ std::vector<size_t> initLongestCommonPrefixArray(
         size_t i = 0;
         size_t indexA = *(it);
         size_t indexB = *(it + 1);
-        size_t min = std::min(str.size() - indexA, str.size() - indexB);
-        while(i < min) {
-            char a = str[indexA + i];
-            char b = str[indexB + i];
-            if(a != b) break;
-            i++;
-        }
+        while(str[indexA + i] == str[indexB + i]) i++;
         lcpArray[lcpArrayIndex++] = i;
     }
     return lcpArray;
