@@ -7,7 +7,7 @@ namespace AlgorithmsAndDataStructures::Core::SuffixArray::Construction::Test {
 
 using testing::ElementsAre;
 
-TEST(SuffixArray_Construction, naiveApproach) {
+TEST(SuffixArray, construction) {
     ASSERT_THAT(initSuffixArray(""), ElementsAre());
     ASSERT_THAT(initSuffixArray("a"), ElementsAre(0));
     ASSERT_THAT(initSuffixArray("ab"), ElementsAre(0, 1));
