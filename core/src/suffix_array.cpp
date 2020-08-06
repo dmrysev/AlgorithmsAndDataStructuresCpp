@@ -16,5 +16,16 @@ std::vector<size_t> initSuffixArray(const std::string& str) {
     return {suffices.begin(), suffices.end()};
 }
 
+std::vector<size_t> initLongestCommonPrefixArray(
+    const std::vector<size_t>& suffixArray,
+    const std::string& str)
+{
+    for(auto it = suffixArray.begin(); it < suffixArray.end() - 1; it += 2) {
+        std::string strA = str.substr(*it, str.size());
+        std::string strB = str.substr(*(it + 1), str.size());
+    }
+    return {};
+}
+
 
 }
