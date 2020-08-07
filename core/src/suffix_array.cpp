@@ -25,12 +25,12 @@ std::vector<std::string> getSuffixes(const std::string& str, const SuffixArray& 
     return suffixes;
 }
 
-LongestCommonSuffixArray initLongestCommonPrefixArray(
+LongestCommonPrefixArray initLongestCommonPrefixArray(
     const SuffixArray& suffixArray,
     const std::string& str)
 {
     if(suffixArray.empty()) return {0};
-    LongestCommonSuffixArray lcpArray(suffixArray.size());
+    LongestCommonPrefixArray lcpArray(suffixArray.size());
     lcpArray[0] = 0;
     size_t lcpArrayIndex = 1;
     for(auto it = suffixArray.begin(); it < suffixArray.end() - 1; it++) {
@@ -43,7 +43,7 @@ LongestCommonSuffixArray initLongestCommonPrefixArray(
     return lcpArray;
 }
 
-LongestCommonSuffixArray initLongestCommonPrefixArray(const std::string& str) {
+LongestCommonPrefixArray initLongestCommonPrefixArray(const std::string& str) {
     auto suffixArray = initSuffixArray(str);
     return initLongestCommonPrefixArray(suffixArray, str);
 }
@@ -56,6 +56,21 @@ size_t findSubstringsCount(const std::string& str) {
 size_t findRepeatedSubstringsCount(const std::string& str) {
     auto lcpArray = initLongestCommonPrefixArray(str);
     return std::accumulate(lcpArray.begin(), lcpArray.end(), 0);
+}
+
+size_t findUniqueRepeatedSubstringsCount(const std::string& str) {
+    LongestCommonPrefixArray lcpa = initLongestCommonPrefixArray(str);
+    size_t sum = 0;
+    for(size_t i = 1; i < lcpa.size(); i++) {
+        size_t prev = lcpa[i - 1];
+        size_t curr = lcpa[i];
+        if(prev < curr) {
+            sum += (curr - prev);
+        }
+        else if(curr > prev) sum += curr;
+
+    }
+    return sum;
 }
 
 size_t findUniqueSubstringsCount(const std::string& str) {

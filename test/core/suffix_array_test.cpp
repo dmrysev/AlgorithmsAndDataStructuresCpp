@@ -40,6 +40,22 @@ TEST(SuffixArrayAlgorithms, findRepeatedSubstringsCount) {
     ASSERT_EQ(findRepeatedSubstringsCount("aabaab"), 7);
 }
 
+TEST(SuffixArrayAlgorithms, findUniqueRepeatedSubstringsCount) {
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount(""), 0);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aa"), 1);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aaa"), 2);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aaaa"), 3);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aaaaa"), 4);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("ab"), 0);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aba"), 1);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("abaa"), 1);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("abab"), 3);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("abcabc"), 6);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("aabaab"), 5);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("baabaa"), 5);
+    ASSERT_EQ(findUniqueRepeatedSubstringsCount("AaAaA"), 5);
+}
+
 TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
     ASSERT_EQ(findUniqueSubstringsCount(""), 0);
     ASSERT_EQ(findUniqueSubstringsCount("a"), 1);
