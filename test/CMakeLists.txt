@@ -9,6 +9,7 @@ set_target_properties(${SUBPRROJECT_NAME} PROPERTIES LINK_DEPENDS_NO_SHARED true
 target_link_libraries(${SUBPRROJECT_NAME}
     PRIVATE
         ${PROJECT_NAME}::Core
+        ${PROJECT_NAME}::Util
         ${GTEST_BOTH_LIBRARIES}
         ${GMOCK_BOTH_LIBRARIES})
 

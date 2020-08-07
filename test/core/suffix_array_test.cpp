@@ -1,7 +1,8 @@
+#include "suffix_array.h"
+#include "util/string.h"
+
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-
-#include "suffix_array.h"
 
 namespace AlgorithmsAndDataStructures::SuffixArray::Test {
 
@@ -28,6 +29,15 @@ TEST(SuffixArray, findUniqueSubstringsCount) {
     ASSERT_EQ(findUniqueSubstringsCount("aaa"), 3);
     ASSERT_EQ(findUniqueSubstringsCount("abab"), 7);
     ASSERT_EQ(findUniqueSubstringsCount("azaza"), 9);
+}
+
+// COMPLEXITY TESTS
+
+constexpr size_t size() { return std::pow(10ul, 5ul); }
+
+TEST(SuffixArray, DISABLED_COMPLEXITY_initSuffixArray) {
+    std::string randStr = Util::String::generateRandomString(size());
+    SuffixArray::initSuffixArray(randStr);
 }
 
 }

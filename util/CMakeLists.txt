@@ -1,5 +1,5 @@
 set(SUBPROJECT_NAME Util)
-file(GLOB_RECURSE SRC_LIST src/*.cpp src/*.hpp)
+file(GLOB_RECURSE SRC_LIST src/*.cpp src/*.h)
 add_library(${PROJECT_NAME}${SUBPROJECT_NAME} SHARED ${SRC_LIST})
 add_library(${PROJECT_NAME}::${SUBPROJECT_NAME} ALIAS ${PROJECT_NAME}${SUBPROJECT_NAME})
 target_include_directories(${PROJECT_NAME}${SUBPROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
