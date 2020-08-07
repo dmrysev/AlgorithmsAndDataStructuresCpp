@@ -30,20 +30,25 @@ TEST(SuffixArrayAlgorithms, findRepeatedSubstringsCount) {
     ASSERT_EQ(findRepeatedSubstringsCount("a"), 0);
     ASSERT_EQ(findRepeatedSubstringsCount("ab"), 0);
     ASSERT_EQ(findRepeatedSubstringsCount("aa"), 1);
+    ASSERT_EQ(findRepeatedSubstringsCount("aab"), 1);
+    ASSERT_EQ(findRepeatedSubstringsCount("abab"), 3);
+    ASSERT_EQ(findRepeatedSubstringsCount("aaa"), 3);
     ASSERT_EQ(findRepeatedSubstringsCount("abac"), 1);
-//    ASSERT_EQ(findRepeatedSubstringsCount("aabaac"), 2);
-//    ASSERT_EQ(findRepeatedSubstringsCount("aaa"), 1);
+    ASSERT_EQ(findRepeatedSubstringsCount("abaca"), 2);
     ASSERT_EQ(findRepeatedSubstringsCount("aabcd"), 1);
     ASSERT_EQ(findRepeatedSubstringsCount("abcabc"), 6);
-//    ASSERT_EQ(findRepeatedSubstringsCount("aabaab"), 5);
+    ASSERT_EQ(findRepeatedSubstringsCount("aabaab"), 7);
 }
 
 TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
     ASSERT_EQ(findUniqueSubstringsCount(""), 0);
+    ASSERT_EQ(findUniqueSubstringsCount("a"), 1);
+    ASSERT_EQ(findUniqueSubstringsCount("aa"), 2);
+    ASSERT_EQ(findUniqueSubstringsCount("ab"), 3);
     ASSERT_EQ(findUniqueSubstringsCount("aaa"), 3);
     ASSERT_EQ(findUniqueSubstringsCount("abab"), 7);
     ASSERT_EQ(findUniqueSubstringsCount("azaza"), 9);
-//    ASSERT_EQ(findUniqueSubstringsCount("aabaab"), 9);
+    ASSERT_EQ(findUniqueSubstringsCount("aabaab"), 14);
 }
 
 // COMPLEXITY TESTS

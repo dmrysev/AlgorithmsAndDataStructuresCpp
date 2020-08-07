@@ -9,13 +9,13 @@
 using namespace std::chrono;
 using namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms;
 
-void print(auto iterable) {
+void print(auto& iterable) {
     for(auto& item: iterable) std::cout << item << "\n";
     std::cout << std::endl;
 }
 
 int main() {
-    auto str = "aabaac";
+    auto str = "aaa";
     SuffixArray sa = initSuffixArray(str);
     auto suffixes = getSuffixes(str, sa);
     print(suffixes);
