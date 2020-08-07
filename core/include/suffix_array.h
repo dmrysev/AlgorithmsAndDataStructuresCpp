@@ -13,5 +13,7 @@ std::vector<size_t> initLongestCommonPrefixArray(
 
 std::vector<size_t> initLongestCommonPrefixArray(const std::string& str);
 
+size_t findUniqueSubstringsCount(const std::string& str);
+
 }
 

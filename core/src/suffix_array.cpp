@@ -1,6 +1,7 @@
 #include "suffix_array.h"
 
 #include <set>
+#include <numeric>
 
 namespace AlgorithmsAndDataStructures::SuffixArray {
 
@@ -37,6 +38,12 @@ std::vector<size_t> initLongestCommonPrefixArray(
 std::vector<size_t> initLongestCommonPrefixArray(const std::string& str) {
     auto suffixArray = initSuffixArray(str);
     return initLongestCommonPrefixArray(suffixArray, str);
+}
+
+size_t findUniqueSubstringsCount(const std::string& str) {
+    auto lcpArray = initLongestCommonPrefixArray(str);
+    size_t n = str.size();
+    return n * (n + 1) / 2 - std::accumulate(lcpArray.begin(), lcpArray.end(), 0);
 }
 
 

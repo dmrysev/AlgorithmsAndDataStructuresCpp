@@ -23,4 +23,11 @@ TEST(SuffixArray, initLongestCommonPrefixArray) {
     ASSERT_THAT(initLongestCommonPrefixArray("ababbab"), ElementsAre(0,2,2,0,1,3,1));
 }
 
+TEST(SuffixArray, findUniqueSubstringsCount) {
+    ASSERT_EQ(findUniqueSubstringsCount(""), 0);
+    ASSERT_EQ(findUniqueSubstringsCount("aaa"), 3);
+    ASSERT_EQ(findUniqueSubstringsCount("abab"), 7);
+    ASSERT_EQ(findUniqueSubstringsCount("azaza"), 9);
+}
+
 }
