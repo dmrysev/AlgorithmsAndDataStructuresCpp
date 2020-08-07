@@ -33,11 +33,22 @@ TEST(SuffixArray, findUniqueSubstringsCount) {
 
 // COMPLEXITY TESTS
 
-constexpr size_t size() { return std::pow(10ul, 5ul); }
+class DISABLED_SuffixArray_Complexity: public testing::Test {
+protected:
+    inline static std::string randomString;
 
-TEST(SuffixArray, DISABLED_COMPLEXITY_initSuffixArray) {
-    std::string randStr = Util::String::generateRandomString(size());
-    SuffixArray::initSuffixArray(randStr);
+    static void SetUpTestSuite() {
+        size_t size = std::pow(10ul, 5ul);
+        randomString = Util::String::generateRandomString(size);
+    }
+};
+
+TEST_F(DISABLED_SuffixArray_Complexity, initSuffixArray) {
+    SuffixArray::initSuffixArray(randomString);
+}
+
+TEST_F(DISABLED_SuffixArray_Complexity, initLongestCommonPrefixArray) {
+    SuffixArray::initLongestCommonPrefixArray(randomString);
 }
 
 }
