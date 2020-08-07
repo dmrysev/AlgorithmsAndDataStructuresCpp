@@ -51,4 +51,8 @@ TEST_F(DISABLED_SuffixArray_Complexity, initLongestCommonPrefixArray) {
     SuffixArray::initLongestCommonPrefixArray(randomString);
 }
 
+TEST_F(DISABLED_SuffixArray_Complexity, findUniqueSubstringsCount) {
+    SuffixArray::findUniqueSubstringsCount(randomString);
+}
+
 }
