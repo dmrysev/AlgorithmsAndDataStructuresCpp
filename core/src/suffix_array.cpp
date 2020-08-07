@@ -20,6 +20,7 @@ std::vector<size_t> initLongestCommonPrefixArray(
     const std::vector<size_t>& suffixArray,
     const std::string& str)
 {
+    if(suffixArray.empty()) return {0};
     std::vector<size_t> lcpArray(suffixArray.size());
     lcpArray[0] = 0;
     size_t lcpArrayIndex = 1;
