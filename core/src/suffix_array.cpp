@@ -3,9 +3,9 @@
 #include <set>
 #include <numeric>
 
-namespace AlgorithmsAndDataStructures::SuffixArray {
+namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms {
 
-std::vector<size_t> initSuffixArray(const std::string& str) {
+SuffixArray initSuffixArray(const std::string& str) {
     auto compare = [&](size_t a, size_t b) {
         return std::lexicographical_compare(str.begin() + a, str.end(),
                                             str.begin() + b, str.end());
@@ -17,12 +17,12 @@ std::vector<size_t> initSuffixArray(const std::string& str) {
     return {suffices.begin(), suffices.end()};
 }
 
-std::vector<size_t> initLongestCommonPrefixArray(
-    const std::vector<size_t>& suffixArray,
+LongestCommonSuffixArray initLongestCommonPrefixArray(
+    const SuffixArray& suffixArray,
     const std::string& str)
 {
     if(suffixArray.empty()) return {0};
-    std::vector<size_t> lcpArray(suffixArray.size());
+    LongestCommonSuffixArray lcpArray(suffixArray.size());
     lcpArray[0] = 0;
     size_t lcpArrayIndex = 1;
     for(auto it = suffixArray.begin(); it < suffixArray.end() - 1; it++) {
@@ -35,7 +35,7 @@ std::vector<size_t> initLongestCommonPrefixArray(
     return lcpArray;
 }
 
-std::vector<size_t> initLongestCommonPrefixArray(const std::string& str) {
+LongestCommonSuffixArray initLongestCommonPrefixArray(const std::string& str) {
     auto suffixArray = initSuffixArray(str);
     return initLongestCommonPrefixArray(suffixArray, str);
 }

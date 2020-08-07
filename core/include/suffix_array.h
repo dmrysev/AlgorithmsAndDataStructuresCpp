@@ -3,15 +3,18 @@
 #include <string>
 #include <vector>
 
-namespace AlgorithmsAndDataStructures::SuffixArray {
+namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms {
 
-std::vector<size_t> initSuffixArray(const std::string& str);
+using SuffixArray = std::vector<size_t>;
+using LongestCommonSuffixArray = std::vector<size_t>;
 
-std::vector<size_t> initLongestCommonPrefixArray(
-    const std::vector<size_t>& suffixArray,
+SuffixArray initSuffixArray(const std::string& str);
+
+LongestCommonSuffixArray initLongestCommonPrefixArray(
+    const SuffixArray& suffixArray,
     const std::string& str);
 
-std::vector<size_t> initLongestCommonPrefixArray(const std::string& str);
+LongestCommonSuffixArray initLongestCommonPrefixArray(const std::string& str);
 
 size_t findSubstringsCount(const std::string& str);
 size_t findRepeatedSubstringsCount(const std::string& str);
