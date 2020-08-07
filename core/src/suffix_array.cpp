@@ -40,11 +40,20 @@ std::vector<size_t> initLongestCommonPrefixArray(const std::string& str) {
     return initLongestCommonPrefixArray(suffixArray, str);
 }
 
-size_t findUniqueSubstringsCount(const std::string& str) {
-    auto lcpArray = initLongestCommonPrefixArray(str);
+size_t findSubstringsCount(const std::string& str) {
     size_t n = str.size();
-    return n * (n + 1) / 2 - std::accumulate(lcpArray.begin(), lcpArray.end(), 0);
+    return n * (n + 1) / 2;
 }
 
+size_t findRepeatedSubstringsCount(const std::string& str) {
+    auto lcpArray = initLongestCommonPrefixArray(str);
+    return std::accumulate(lcpArray.begin(), lcpArray.end(), 0);
+}
+
+size_t findUniqueSubstringsCount(const std::string& str) {
+    size_t substringsCount = findSubstringsCount(str);
+    size_t repeatedSubstringsCount = findRepeatedSubstringsCount(str);
+    return substringsCount - repeatedSubstringsCount;
+}
 
 }
