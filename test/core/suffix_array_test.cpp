@@ -93,4 +93,8 @@ TEST_F(DISABLED_SuffixArray_Complexity, findUniqueSubstringsCount) {
     SuffixArrayAlgorithms::findUniqueSubstringsCount(randomString);
 }
 
+TEST_F(DISABLED_SuffixArray_Complexity, findUniqueRepeatedSubstringsCount) {
+    findUniqueSubstringsCount(randomString);
+}
+
 }
