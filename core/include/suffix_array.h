@@ -13,6 +13,7 @@ struct LongestCommonSubstringIndex {
     size_t stringIndex = 0;
     size_t subStringIndex = 0;
     size_t subStringLength = 0;
+    std::string subString;
 
     bool operator==(const LongestCommonSubstringIndex& other) {
         return stringIndex == other.stringIndex &&

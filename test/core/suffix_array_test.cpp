@@ -72,7 +72,6 @@ TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_EQ(findLongestCommonSubstring({}), "");
     ASSERT_EQ(findLongestCommonSubstring({""}), "");
-    ASSERT_EQ(findLongestCommonSubstring({"", "", ""}), "");
     ASSERT_EQ(findLongestCommonSubstring({"ab", "cd"}), "");
     ASSERT_EQ(findLongestCommonSubstring({"a", "b", "c"}), "");
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ac", "ad"}), "a");

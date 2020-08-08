@@ -22,7 +22,7 @@ SuffixArray initSuffixArray(const std::string& str) {
 }
 
 std::vector<std::string> getSuffixes(const std::string& str, const SuffixArray& sa) {
-    std::vector<std::string> suffixes(str.size());
+    std::vector<std::string> suffixes;
     for(size_t index: sa) {
         suffixes.emplace_back(str.substr(index, str.size()));
     }
@@ -141,25 +141,58 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
         return stringsCount >= minStringsCount;
     };
-    size_t longestCommonSuffixIndex = 0;
-    size_t longestCommonSuffixLength = 0;
-//    size_t windowEnd = minStringsCount - 1;
+    auto getLongestCommonPrefixIndex = [&] (size_t begin, size_t end) {
+        size_t lcpIndex = begin;
+        size_t lcpLength = 0;
+        for(size_t i = begin; i <= end; i++) {
+            if(lcpa[i] > lcpLength) lcpIndex = i;
+        }
+        return lcpIndex;
+    };
+    auto hasCommonPrefix = [&](size_t begin, size_t end) {
+        for(size_t i = begin + 1; i <= end; i++) {
+            if(lcpa[i] == 0) return false;
+        }
+        return true;
+    };
+    std::string lcpSubstring;
+    size_t lcpIndex = 0;
     auto suffixes = getSuffixes(concatString, suffixArray);
+    for(size_t begin = strings.size(), end = strings.size(); begin < lcpa.size();) {
+        while(!isMinRequiredStringsCountSatisfied(begin, end)) end++;
+        while(!hasCommonPrefix(begin, end)) begin++;
+        if(begin == end) break;
+        if(!isMinRequiredStringsCountSatisfied(begin, end)) continue;
+        size_t lcpIndexForWindow = getLongestCommonPrefixIndex(begin, end);
+        if(lcpa[lcpIndexForWindow] > lcpa[lcpIndex]) {
+            lcpIndex = lcpIndexForWindow;
+            size_t saIndex = suffixArray[lcpIndex];
+            size_t lcpLength = lcpa[lcpIndex];
+            lcpSubstring = concatString.substr(saIndex, lcpLength);
+        }
+        begin++;
+    }
 //    for(auto s: suffixes) {
 //        std::cout << s << std::endl;
 //    }
-    for(size_t i = strings.size(); i < concatString.size(); i++) {
-        size_t begin = i;
-        size_t end = begin;
-        while(!isMinRequiredStringsCountSatisfied(begin, end)) {
-            end++;
-        }
-    }
+//    for(size_t i = strings.size(); i < concatString.size(); i++) {
+//        size_t begin = i;
+//        size_t end = begin;
+//        while(!isMinRequiredStringsCountSatisfied(begin, end)) {
+//            end++;
+//        }
+//    }
 //    for(size_t i = 0; i < sa.size(); i++) {
 //        size_t suffixIndex = sa[i];
 //        size_t stringIndex = getStringIndex(suffixIndex);
 //    }
-    return {};
+//    size_t suffixIndex = suffixArray[lcpIndex];
+    LongestCommonSubstringIndex result;
+//    result.stringIndex = getStringIndex(suffixIndex);
+    result.subString = lcpSubstring;
+
+
+    return result;
 }
 
 std::string findLongestCommonSubstring(
@@ -167,9 +200,10 @@ std::string findLongestCommonSubstring(
     std::optional<size_t> minimumStringsCount)
 {
     auto result = findLongestCommonSubstringIndex(strings, minimumStringsCount);
-    size_t from = result.subStringIndex;
-    size_t to = from + result.subStringLength;
-    return strings.at(result.stringIndex).substr(from, to);
+//    size_t from = result.subStringIndex;
+//    size_t to = from + result.subStringLength;
+//    return strings.at(result.stringIndex).substr(from, to);
+    return result.subString;
 }
 
 }

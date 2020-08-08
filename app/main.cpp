@@ -18,6 +18,6 @@ void print(auto& iterable) {
 
 int main() {
 //    findLongestCommonSubstring({"abca", "bcad", "daca"});
-    findLongestCommonSubstring({"AABC", "BCDC", "BCDE", "CDED"}, 2);
+    std::cout << findLongestCommonSubstring({"AABC", "BCDC", "BCDE", "CDED"}, 2) << std::endl;
     return 0;
 }
