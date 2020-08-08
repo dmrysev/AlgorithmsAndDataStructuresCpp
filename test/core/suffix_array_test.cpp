@@ -69,6 +69,10 @@ TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
     ASSERT_EQ(findUniqueSubstringsCount("aabaab"), 14);
 }
 
+TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
+    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 2), "bca");
+}
+
 // COMPLEXITY TESTS
 
 class DISABLED_SuffixArray_Complexity: public testing::Test {

@@ -79,4 +79,21 @@ size_t findUniqueSubstringsCount(const std::string& str) {
     return substringsCount - repeatedSubstringsCount;
 }
 
+LongestCommonSubstringIndex findLongestCommonSubstringIndex(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount)
+{
+    return {};
+}
+
+std::string findLongestCommonSubstring(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount)
+{
+    auto result = findLongestCommonSubstringIndex(strings, minimumStringsCount);
+    size_t from = result.subStringIndex;
+    size_t to = from + result.subStringLength;
+    return strings.at(result.stringIndex).substr(from, to);
+}
+
 }
