@@ -17,13 +17,7 @@ void print(auto& iterable) {
 }
 
 int main() {
-    auto str = "cabcad";
-    SuffixArray sa = initSuffixArray(str);
-    LongestCommonPrefixArray lcsa = initLongestCommonPrefixArray(sa, str);
-    auto suffixes = getSuffixes(str, sa);
-    print(suffixes);
-    print(lcsa);
-    size_t urc = findUniqueRepeatedSubstringsCount(str);
-    std::cout << urc << std::endl;
+//    findLongestCommonSubstring({"abca", "bcad", "daca"});
+    findLongestCommonSubstring({"AABC", "BCDC", "BCDE", "CDED"}, 2);
     return 0;
 }
