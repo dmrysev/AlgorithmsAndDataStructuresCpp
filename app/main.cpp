@@ -17,7 +17,7 @@ void print(auto& iterable) {
 }
 
 int main() {
-    auto str = "abcabcabc";
+    auto str = "cabcad";
     SuffixArray sa = initSuffixArray(str);
     LongestCommonPrefixArray lcsa = initLongestCommonPrefixArray(sa, str);
     auto suffixes = getSuffixes(str, sa);
