@@ -1,5 +1,6 @@
 #include "suffix_array.h"
 #include "util/string.h"
+#include "util/numeric.h"
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
@@ -96,6 +97,36 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 0), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 1), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 4), std::invalid_argument);
+}
+
+TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
+    // ARRANGE
+    size_t commonSubstringSize = Util::Numeric::randomNumber(2, 100);
+    int maximumStringsCount = 15;
+    auto commonSubstring = Util::String::generateRandomString(commonSubstringSize, 'A' + maximumStringsCount, 'z');
+    char uniqueDelimeter = 'A';
+    auto generateString = [&] {
+        int maximumSize = static_cast<int>(commonSubstringSize - 1);
+        int prefixSize = Util::Numeric::randomNumber(0, maximumSize);
+        auto randomPrefix = Util::String::generateRandomString(prefixSize);
+        int suffixSize = Util::Numeric::randomNumber(0, maximumSize);
+        auto randomSuffix = Util::String::generateRandomString(suffixSize);
+        auto result = randomPrefix + uniqueDelimeter + commonSubstring + uniqueDelimeter + randomSuffix;
+        uniqueDelimeter++;
+        return result;
+    };
+    std::vector<std::string> strings;
+    int stringsCount = Util::Numeric::randomNumber(2, maximumStringsCount);
+    for(int i = 0; i < stringsCount; i++) strings.push_back(generateString());
+
+    // ACT
+    auto result = findLongestCommonSubstring(strings);
+    if(result != commonSubstring) {
+        findLongestCommonSubstring(strings);
+    }
+
+    // ASSERT
+    ASSERT_EQ(result, commonSubstring);
 }
 
 // COMPLEXITY TESTS
