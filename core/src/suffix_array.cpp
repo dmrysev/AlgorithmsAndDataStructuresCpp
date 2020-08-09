@@ -106,7 +106,7 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
     };
     validate();
-    char firstSentinel = '#';
+    char firstSentinel = '!';
     char sentinel = firstSentinel;
     std::string concatString;
     for(const std::string& s: strings) {
@@ -142,14 +142,6 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
         return stringsCount >= minStringsCount;
     };
-    auto getLongestCommonPrefixIndex = [&] (size_t begin, size_t end) {
-        size_t lcpIndex = begin;
-        size_t lcpLength = 0;
-        for(size_t i = begin; i <= end; i++) {
-            if(lcpa[i] > lcpLength) lcpIndex = i;
-        }
-        return lcpIndex;
-    };
     auto hasCommonPrefix = [&](size_t begin, size_t end) {
         for(size_t i = begin + 1; i <= end; i++) {
             if(lcpa[i] == 0) return false;
@@ -158,13 +150,13 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
     };
     std::string lcpSubstring;
     size_t lcpIndex = 0;
-    auto suffixes = getSuffixes(concatString, suffixArray);
+//    auto suffixes = getSuffixes(concatString, suffixArray);
     for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
         if(end == lcpa.size() - 1 && end - begin < minStringsCount) break;
         while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
         if(!isMinRequiredStringsCountSatisfied(begin, end)) continue;
-        size_t lcpIndexForWindow = getLongestCommonPrefixIndex(begin, end);
+        size_t lcpIndexForWindow = end;
         if(lcpa[lcpIndexForWindow] > lcpa[lcpIndex]) {
             lcpIndex = lcpIndexForWindow;
             size_t saIndex = suffixArray[lcpIndex];
