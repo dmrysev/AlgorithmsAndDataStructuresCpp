@@ -106,8 +106,7 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
     };
     validate();
-    char firstSentinel = '!';
-    char sentinel = firstSentinel;
+    char sentinel = '!';
     std::string concatString;
     for(const std::string& s: strings) {
         concatString += s + sentinel;
@@ -124,7 +123,7 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
         throw std::runtime_error{"String index not found"};
     };
-    auto getStringIndexCount = [&] (size_t begin, size_t end) {
+    auto getStringIndexesCounts = [&] (size_t begin, size_t end) {
         std::map<size_t, size_t> stringIndexCount;
         for(size_t i = 0; i < strings.size(); i++) stringIndexCount[i] = 0;
         for(size_t i = begin; i <= end; i++) {
@@ -135,9 +134,9 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         return stringIndexCount;
     };
     auto isMinRequiredStringsCountSatisfied = [&] (size_t begin, size_t end) {
-        auto stringIndexCount = getStringIndexCount(begin, end);
+        auto stringIndexesCounts = getStringIndexesCounts(begin, end);
         size_t stringsCount = 0;
-        for(auto& [stringIndex, count]: stringIndexCount) {
+        for(auto& [stringIndex, count]: stringIndexesCounts) {
             if(count != 0) stringsCount++;
         }
         return stringsCount >= minStringsCount;
