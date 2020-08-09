@@ -78,12 +78,11 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_EQ(findLongestCommonSubstring({"abc", "abc", "add"}), "a");
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ab", "ab"}), "ab");
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}), "ca");
-
     ASSERT_EQ(findLongestCommonSubstring({"aabaa", "aadaa", "aacaa"}), "aa");
 
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 2), "bca");
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 2), "bca");
-    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 3), "");
+    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 3), "ca");
     ASSERT_EQ(findLongestCommonSubstring({"abcaab", "bcaad", "daca"}, 2), "bcaa");
 
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 0), std::invalid_argument);

@@ -106,7 +106,8 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
     };
     validate();
-    char sentinel = '#';
+    char firstSentinel = '#';
+    char sentinel = firstSentinel;
     std::string concatString;
     for(const std::string& s: strings) {
         concatString += s + sentinel;
@@ -158,10 +159,10 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
     std::string lcpSubstring;
     size_t lcpIndex = 0;
     auto suffixes = getSuffixes(concatString, suffixArray);
-    for(size_t begin = strings.size(), end = strings.size(); begin < lcpa.size();) {
-        while(!isMinRequiredStringsCountSatisfied(begin, end)) end++;
+    for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
+        if(end == lcpa.size() - 1 && end - begin < minStringsCount) break;
+        while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
-        if(begin == end) break;
         if(!isMinRequiredStringsCountSatisfied(begin, end)) continue;
         size_t lcpIndexForWindow = getLongestCommonPrefixIndex(begin, end);
         if(lcpa[lcpIndexForWindow] > lcpa[lcpIndex]) {
