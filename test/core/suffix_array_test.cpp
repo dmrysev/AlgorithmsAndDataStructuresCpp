@@ -102,32 +102,33 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
 
 class DISABLED_SuffixArray_Complexity: public testing::Test {
 protected:
-    inline static std::string randomString;
+    inline static std::string randomString3;
+    inline static std::string randomString5;
 
     static void SetUpTestSuite() {
-        size_t size = std::pow(10ul, 5ul);
-        randomString = Util::String::generateRandomString(size);
+        randomString3 = Util::String::generateRandomString(std::pow(10ul, 3ul));
+        randomString5 = Util::String::generateRandomString(std::pow(10ul, 5ul));
     }
 };
 
 TEST_F(DISABLED_SuffixArray_Complexity, initSuffixArray) {
-    initSuffixArray(randomString);
+    initSuffixArray(randomString5);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, initLongestCommonPrefixArray) {
-    initLongestCommonPrefixArray(randomString);
+    initLongestCommonPrefixArray(randomString5);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findUniqueSubstringsCount) {
-    findUniqueSubstringsCount(randomString);
+    findUniqueSubstringsCount(randomString5);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findUniqueRepeatedSubstringsCount) {
-    findUniqueSubstringsCount(randomString);
+    findUniqueSubstringsCount(randomString5);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findLongestCommonSubstring) {
-    ASSERT_EQ(findLongestCommonSubstring({randomString, randomString}), randomString);
+    ASSERT_EQ(findLongestCommonSubstring({randomString3, randomString3}), randomString3);
 }
 
 }
