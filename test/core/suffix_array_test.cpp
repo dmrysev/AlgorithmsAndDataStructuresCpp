@@ -77,8 +77,17 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ac", "ad"}), "a");
     ASSERT_EQ(findLongestCommonSubstring({"abc", "abc", "add"}), "a");
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ab", "ab"}), "ab");
+    ASSERT_EQ(findLongestCommonSubstring({"aaa", "aaa", "aaa"}), "aaa");
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}), "ca");
     ASSERT_EQ(findLongestCommonSubstring({"aabaa", "aadaa", "aacaa"}), "aa");
+
+    ASSERT_EQ(findLongestCommonSubstring({"zxybca", "zxybcd", "zxybcc"}), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstring({"zxybca", "zxybcd", "zxybcc"}, 2), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstring({"abzxybca", "adzxybcd", "aczxybcc"}), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstring({"abzxybca", "adzxybcc", "aczxybcc"}, 2), "zxybcc");
+
+    ASSERT_EQ(findLongestCommonSubstring({"bcabc", "bdaaaabd", "beabe", "bfabababf"}), "ab");
+    ASSERT_EQ(findLongestCommonSubstring({"baaab", "caaaac", "daaaaad"}), "aaa");
 
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 2), "bca");
     ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 3), "ca");
@@ -102,19 +111,23 @@ protected:
 };
 
 TEST_F(DISABLED_SuffixArray_Complexity, initSuffixArray) {
-    SuffixArrayAlgorithms::initSuffixArray(randomString);
+    initSuffixArray(randomString);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, initLongestCommonPrefixArray) {
-    SuffixArrayAlgorithms::initLongestCommonPrefixArray(randomString);
+    initLongestCommonPrefixArray(randomString);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findUniqueSubstringsCount) {
-    SuffixArrayAlgorithms::findUniqueSubstringsCount(randomString);
+    findUniqueSubstringsCount(randomString);
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findUniqueRepeatedSubstringsCount) {
     findUniqueSubstringsCount(randomString);
+}
+
+TEST_F(DISABLED_SuffixArray_Complexity, findLongestCommonSubstring) {
+    ASSERT_EQ(findLongestCommonSubstring({randomString, randomString}), randomString);
 }
 
 }
