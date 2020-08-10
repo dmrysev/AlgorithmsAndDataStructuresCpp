@@ -73,8 +73,8 @@ TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
 }
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
-    ASSERT_EQ(findLongestCommonSubstring({"ab", "cd"}), "");
-    ASSERT_EQ(findLongestCommonSubstring({"a", "b", "c"}), "");
+    ASSERT_EQ(findLongestCommonSubstring({"ab", "cd"}), std::nullopt);
+    ASSERT_EQ(findLongestCommonSubstring({"a", "b", "c"}), std::nullopt);
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ac", "ad"}), "a");
     ASSERT_EQ(findLongestCommonSubstring({"abc", "abc", "add"}), "a");
     ASSERT_EQ(findLongestCommonSubstring({"ab", "ab", "ab"}), "ab");
@@ -96,6 +96,7 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
 
     ASSERT_THROW(findLongestCommonSubstring({}), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({""}), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstring({"", ""}), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({"abc"}), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 0), std::invalid_argument);
     ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 1), std::invalid_argument);

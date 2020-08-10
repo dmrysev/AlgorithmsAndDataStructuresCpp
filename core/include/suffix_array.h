@@ -32,7 +32,7 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount = {});
 
-std::string findLongestCommonSubstring(
+std::optional<std::string> findLongestCommonSubstring(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount = {});
 

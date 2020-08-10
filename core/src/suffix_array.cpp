@@ -181,13 +181,12 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     return lcsIndexes;
 }
 
-std::string findLongestCommonSubstring(
+std::optional<std::string> findLongestCommonSubstring(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount)
 {
     auto result = findLongestCommonSubstringIndexes(strings, minimumStringsCount);
-    if(result.empty()) return "";
-    if(result[0].subStringLength == 0) return "";
+    if(result.empty()) return {};
     size_t from = result[0].subStringIndex;
     return strings.at(result[0].stringIndex).substr(from, result[0].subStringLength);
 }
