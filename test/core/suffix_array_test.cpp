@@ -101,7 +101,7 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
     // ARRANGE
-    const size_t commonSubstringSize = Util::Numeric::randomNumber(2, 100);
+    const size_t commonSubstringSize = Util::Numeric::randomNumber(2, 30);
     const int maximumStringsCount = 10;
     const char startChar = 'A';
     const char endChar = 'z';
@@ -120,12 +120,10 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
     std::vector<std::string> strings;
     int stringsCount = Util::Numeric::randomNumber(2, maximumStringsCount);
     for(int i = 0; i < stringsCount; i++) strings.push_back(generateString());
+    auto minRequiredStringsCount = Util::Numeric::randomNumber<size_t>(2, maximumStringsCount);
 
     // ACT
-    auto result = findLongestCommonSubstring(strings);
-    if(result != commonSubstring) {
-        findLongestCommonSubstring(strings);
-    }
+    auto result = findLongestCommonSubstring(strings, minRequiredStringsCount);
 
     // ASSERT
     ASSERT_EQ(result, commonSubstring);

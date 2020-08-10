@@ -154,7 +154,6 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
     size_t lcpIndex = 0;
 //    auto suffixes = getSuffixes(concatString, suffixArray);
     for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
-//        if(end == lcpa.size() - 1 && !isMinRequiredStringsCountSatisfied(begin, end)) break;
         while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
         if(!isMinRequiredStringsCountSatisfied(begin, end)) {
