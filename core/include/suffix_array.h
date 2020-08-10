@@ -14,12 +14,6 @@ struct LongestCommonSubstringIndex {
     size_t subStringIndex = 0;
     size_t subStringLength = 0;
     std::string subString;
-
-    bool operator==(const LongestCommonSubstringIndex& other) {
-        return stringIndex == other.stringIndex &&
-               subStringIndex == other.subStringIndex &&
-               subStringLength == other.subStringLength;
-    }
 };
 
 SuffixArray initSuffixArray(const std::string& str);
