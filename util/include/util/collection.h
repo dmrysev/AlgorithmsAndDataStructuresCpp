@@ -23,11 +23,11 @@ bool contains(std::map<Key,Value,Cmp,Alloc> const& m, Key const& k) {
     return m.find(k) != m.end();
 }
 
-bool contains(const std::string& string, const std::string& subString) {
+inline bool contains(const std::string& string, const std::string& subString) {
     return string.find(subString) != std::string::npos;
 }
 
-bool contains(const std::string& string, const char c) {
+inline bool contains(const std::string& string, const char c) {
     return string.find(c) != std::string::npos;
 }
 
