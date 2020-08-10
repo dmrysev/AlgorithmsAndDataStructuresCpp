@@ -90,9 +90,9 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     std::optional<size_t> minimumStringsCount)
 {
     const char startingChar = 'A';
-    if(strings.size() < 2) return {};
     size_t minStringsCount = minimumStringsCount.value_or(strings.size());
     auto validate = [&] {
+        if(strings.size() < 2) throw std::invalid_argument{"Requirement: strings.size() >= 2"};
         if(minStringsCount < 2 || minStringsCount > strings.size()) {
             throw std::invalid_argument{"Requirements: minimumStringsCount >= 2 && minimumStringsCount <= strings.size()"};
         }

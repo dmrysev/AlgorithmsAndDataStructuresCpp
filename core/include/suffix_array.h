@@ -27,7 +27,6 @@ struct LongestCommonSubstringIndex {
     size_t stringIndex = 0;
     size_t subStringIndex = 0;
     size_t subStringLength = 0;
-    std::string subString;
 };
 std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     const std::vector<std::string>& strings,
