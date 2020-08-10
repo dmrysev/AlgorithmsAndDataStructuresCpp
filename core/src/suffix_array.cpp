@@ -150,10 +150,10 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
         }
         return true;
     };
-    std::vector<LongestCommonSubstringIndex> lcsIndexes(1);
     #ifndef NDEBUG
     auto suffixes = getSuffixes(concatString, suffixArray);
     #endif
+    std::vector<LongestCommonSubstringIndex> lcsIndexes;
     for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
         while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
@@ -162,46 +162,22 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
             else continue;
         }
         size_t lcpIndexForWindow = end;
-        size_t currentLcsLength = lcsIndexes[0].subStringLength;
-        if(lcpa[lcpIndexForWindow] > currentLcsLength) {
+        size_t currentLcsLength = lcsIndexes.empty() ? 0 : lcsIndexes[0].subStringLength;
+        if(lcpa[lcpIndexForWindow] >= currentLcsLength) {
             LongestCommonSubstringIndex lcsi;
             size_t suffixIndex = suffixArray[lcpIndexForWindow];
             lcsi.stringIndex = getStringIndex(suffixIndex);
             lcsi.subStringLength = lcpa[lcpIndexForWindow];
             const std::string& str = strings.at(lcsi.stringIndex);
-
             auto it = std::search(str.begin(), str.end(),
                 concatString.begin() + suffixIndex,
                 concatString.begin() + suffixIndex + lcsi.subStringLength);
             lcsi.subStringIndex = it - str.begin();
-//            lcsi.subStringIndex = strings[lcsi.stringIndex].find(
-//            lcsi.subStringIndex =
-            lcsIndexes[0] = lcsi;
-//            lcpIndex = lcpIndexForWindow;
-//            size_t saIndex = suffixArray[lcpIndex];
-//            size_t lcpLength = lcpa[lcpIndex];
-//            lcpSubstring = concatString.substr(saIndex, lcpLength);
+            if(lcsi.subStringLength > currentLcsLength) lcsIndexes.clear();
+            lcsIndexes.push_back(lcsi);
         }
         begin++;
     }
-//    for(auto s: suffixes) {
-//        std::cout << s << std::endl;
-//    }
-//    for(size_t i = strings.size(); i < concatString.size(); i++) {
-//        size_t begin = i;
-//        size_t end = begin;
-//        while(!isMinRequiredStringsCountSatisfied(begin, end)) {
-//            end++;
-//        }
-//    }
-//    for(size_t i = 0; i < sa.size(); i++) {
-//        size_t suffixIndex = sa[i];
-//        size_t stringIndex = getStringIndex(suffixIndex);
-//    }
-//    size_t suffixIndex = suffixArray[lcpIndex];
-//    result.stringIndex = getStringIndex(suffixIndex);
-
-
     return lcsIndexes;
 }
 
