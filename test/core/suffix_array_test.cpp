@@ -101,16 +101,18 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
     // ARRANGE
-    size_t commonSubstringSize = Util::Numeric::randomNumber(2, 100);
-    int maximumStringsCount = 15;
-    auto commonSubstring = Util::String::generateRandomString(commonSubstringSize, 'A' + maximumStringsCount, 'z');
+    const size_t commonSubstringSize = Util::Numeric::randomNumber(2, 100);
+    const int maximumStringsCount = 10;
+    const char startChar = 'A';
+    const char endChar = 'z';
+    auto commonSubstring = Util::String::generateRandomString(commonSubstringSize, startChar + maximumStringsCount, endChar);
     char uniqueDelimeter = 'A';
     auto generateString = [&] {
         int maximumSize = static_cast<int>(commonSubstringSize - 1);
         int prefixSize = Util::Numeric::randomNumber(0, maximumSize);
-        auto randomPrefix = Util::String::generateRandomString(prefixSize);
+        auto randomPrefix = Util::String::generateRandomString(prefixSize, startChar, endChar);
         int suffixSize = Util::Numeric::randomNumber(0, maximumSize);
-        auto randomSuffix = Util::String::generateRandomString(suffixSize);
+        auto randomSuffix = Util::String::generateRandomString(suffixSize, startChar, endChar);
         auto result = randomPrefix + uniqueDelimeter + commonSubstring + uniqueDelimeter + randomSuffix;
         uniqueDelimeter++;
         return result;
@@ -139,6 +141,7 @@ protected:
     static void SetUpTestSuite() {
         randomString3 = Util::String::generateRandomString(std::pow(10ul, 3ul));
         randomString5 = Util::String::generateRandomString(std::pow(10ul, 5ul));
+        auto a = 1;
     }
 };
 

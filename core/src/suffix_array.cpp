@@ -3,6 +3,7 @@
 #include <set>
 #include <map>
 #include <numeric>
+#include <sstream>
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
@@ -88,6 +89,7 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount)
 {
+    const char startingChar = 'A';
     if(strings.size() < 2) return {};
     size_t minStringsCount = minimumStringsCount.value_or(strings.size());
     auto validate = [&] {
@@ -98,10 +100,11 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         for(const std::string& str: strings) {
             auto it = std::min_element(str.begin(), str.end());
             char minChar = *it;
-            if(minChar < 41) {
-                std::string msg = "Requirements: For every string in strings "
-                    "and for every char in string, char >= 41";
-                throw std::invalid_argument{msg};
+            if(minChar < startingChar) {
+                std::stringstream ss;
+                ss << "Requirements: For every string in strings "
+                   << "and for every char in string, char >= " << (int) startingChar;
+                throw std::invalid_argument{ss.str()};
             }
         }
     };
@@ -151,10 +154,13 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
     size_t lcpIndex = 0;
 //    auto suffixes = getSuffixes(concatString, suffixArray);
     for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
-        if(end == lcpa.size() - 1 && end - begin < minStringsCount) break;
+//        if(end == lcpa.size() - 1 && !isMinRequiredStringsCountSatisfied(begin, end)) break;
         while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
-        if(!isMinRequiredStringsCountSatisfied(begin, end)) continue;
+        if(!isMinRequiredStringsCountSatisfied(begin, end)) {
+            if(end == lcpa.size() - 1) break;
+            else continue;
+        }
         size_t lcpIndexForWindow = end;
         if(lcpa[lcpIndexForWindow] > lcpa[lcpIndex]) {
             lcpIndex = lcpIndexForWindow;
