@@ -85,7 +85,7 @@ size_t findUniqueSubstringsCount(const std::string& str) {
 }
 
 // Sliding window implementation
-LongestCommonSubstringIndex findLongestCommonSubstringIndex(
+std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount)
 {
@@ -150,9 +150,10 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
         }
         return true;
     };
-    std::string lcpSubstring;
-    size_t lcpIndex = 0;
-//    auto suffixes = getSuffixes(concatString, suffixArray);
+    std::vector<LongestCommonSubstringIndex> lcsIndexes(1);
+    #ifndef NDEBUG
+    auto suffixes = getSuffixes(concatString, suffixArray);
+    #endif
     for(size_t begin = strings.size(), end = begin + minStringsCount - 1; ;) {
         while(!isMinRequiredStringsCountSatisfied(begin, end) && end + 1 < lcpa.size()) end++;
         while(!hasCommonPrefix(begin, end)) begin++;
@@ -161,11 +162,25 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
             else continue;
         }
         size_t lcpIndexForWindow = end;
-        if(lcpa[lcpIndexForWindow] > lcpa[lcpIndex]) {
-            lcpIndex = lcpIndexForWindow;
-            size_t saIndex = suffixArray[lcpIndex];
-            size_t lcpLength = lcpa[lcpIndex];
-            lcpSubstring = concatString.substr(saIndex, lcpLength);
+        size_t currentLcsLength = lcsIndexes[0].subStringLength;
+        if(lcpa[lcpIndexForWindow] > currentLcsLength) {
+            LongestCommonSubstringIndex lcsi;
+            size_t suffixIndex = suffixArray[lcpIndexForWindow];
+            lcsi.stringIndex = getStringIndex(suffixIndex);
+            lcsi.subStringLength = lcpa[lcpIndexForWindow];
+            const std::string& str = strings.at(lcsi.stringIndex);
+
+            auto it = std::search(str.begin(), str.end(),
+                concatString.begin() + suffixIndex,
+                concatString.begin() + suffixIndex + lcsi.subStringLength);
+            lcsi.subStringIndex = it - str.begin();
+//            lcsi.subStringIndex = strings[lcsi.stringIndex].find(
+//            lcsi.subStringIndex =
+            lcsIndexes[0] = lcsi;
+//            lcpIndex = lcpIndexForWindow;
+//            size_t saIndex = suffixArray[lcpIndex];
+//            size_t lcpLength = lcpa[lcpIndex];
+//            lcpSubstring = concatString.substr(saIndex, lcpLength);
         }
         begin++;
     }
@@ -184,23 +199,21 @@ LongestCommonSubstringIndex findLongestCommonSubstringIndex(
 //        size_t stringIndex = getStringIndex(suffixIndex);
 //    }
 //    size_t suffixIndex = suffixArray[lcpIndex];
-    LongestCommonSubstringIndex result;
 //    result.stringIndex = getStringIndex(suffixIndex);
-    result.subString = lcpSubstring;
 
 
-    return result;
+    return lcsIndexes;
 }
 
 std::string findLongestCommonSubstring(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount)
 {
-    auto result = findLongestCommonSubstringIndex(strings, minimumStringsCount);
-//    size_t from = result.subStringIndex;
-//    size_t to = from + result.subStringLength;
-//    return strings.at(result.stringIndex).substr(from, to);
-    return result.subString;
+    auto result = findLongestCommonSubstringIndexes(strings, minimumStringsCount);
+    if(result.empty()) return "";
+    if(result[0].subStringLength == 0) return "";
+    size_t from = result[0].subStringIndex;
+    return strings.at(result[0].stringIndex).substr(from, result[0].subStringLength);
 }
 
 }

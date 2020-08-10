@@ -7,19 +7,11 @@
 namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms {
 
 using SuffixArray = std::vector<size_t>;
-using LongestCommonPrefixArray = std::vector<size_t>;
-
-struct LongestCommonSubstringIndex {
-    size_t stringIndex = 0;
-    size_t subStringIndex = 0;
-    size_t subStringLength = 0;
-    std::string subString;
-};
-
 SuffixArray initSuffixArray(const std::string& str);
 
 std::vector<std::string> getSuffixes(const std::string& str, const SuffixArray& sa);
 
+using LongestCommonPrefixArray = std::vector<size_t>;
 LongestCommonPrefixArray initLongestCommonPrefixArray(
     const SuffixArray& suffixArray,
     const std::string& str);
@@ -31,7 +23,13 @@ size_t findRepeatedSubstringsCount(const std::string& str);
 size_t findUniqueRepeatedSubstringsCount(const std::string& str);
 size_t findUniqueSubstringsCount(const std::string& str);
 
-LongestCommonSubstringIndex findLongestCommonSubstringIndex(
+struct LongestCommonSubstringIndex {
+    size_t stringIndex = 0;
+    size_t subStringIndex = 0;
+    size_t subStringLength = 0;
+    std::string subString;
+};
+std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount = {});
 
