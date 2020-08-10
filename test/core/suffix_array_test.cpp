@@ -5,6 +5,8 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
+#include <mutex>
+
 namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms::Test {
 
 using testing::ElementsAre;
@@ -120,7 +122,7 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
     std::vector<std::string> strings;
     int stringsCount = Util::Numeric::randomNumber(2, maximumStringsCount);
     for(int i = 0; i < stringsCount; i++) strings.push_back(generateString());
-    auto minRequiredStringsCount = Util::Numeric::randomNumber<size_t>(2, maximumStringsCount);
+    auto minRequiredStringsCount = Util::Numeric::randomNumber<size_t>(2, stringsCount);
 
     // ACT
     auto result = findLongestCommonSubstring(strings, minRequiredStringsCount);
@@ -131,15 +133,18 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
 
 // COMPLEXITY TESTS
 
-class DISABLED_SuffixArray_Complexity: public testing::Test {
+class DISABLED_SuffixArray_Complexity: public testing::Test
+{
 protected:
     inline static std::string randomString3;
     inline static std::string randomString5;
 
-    static void SetUpTestSuite() {
-        randomString3 = Util::String::generateRandomString(std::pow(10ul, 3ul));
-        randomString5 = Util::String::generateRandomString(std::pow(10ul, 5ul));
-        auto a = 1;
+    DISABLED_SuffixArray_Complexity() {
+        static std::once_flag flag;
+        std::call_once(flag, [&] {
+            randomString3 = Util::String::generateRandomString(std::pow(10ul, 3ul));
+            randomString5 = Util::String::generateRandomString(std::pow(10ul, 5ul));
+        });
     }
 };
 
