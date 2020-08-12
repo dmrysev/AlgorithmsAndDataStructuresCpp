@@ -1,4 +1,5 @@
 #include "suffix_array.h"
+#include "util/collection.h"
 
 #include <set>
 #include <map>
@@ -150,6 +151,17 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
         }
         return true;
     };
+//    auto getLcpIndex = [&] (size_t begin, size_t end) {
+
+//    };
+//    auto getLcpLength = [&](size_t begin, size_t end) {
+//        auto it = lcpa.begin();
+//        return *std::min_element(it + begin, it + end);
+//    };
+    auto getLcpIterator = [&] (size_t begin, size_t end) {
+        auto it = lcpa.begin();
+        return std::min_element(it + begin, it + end);
+    };
     #ifndef NDEBUG
     auto suffixes = getSuffixes(concatString, suffixArray);
     #endif
@@ -161,20 +173,22 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
             if(end == lcpa.size() - 1) break;
             else continue;
         }
-        size_t lcpIndexForWindow = end;
+        auto lcpIteratorForWindow = getLcpIterator(begin, end);
+        size_t lcpIndexForWindow = lcpIteratorForWindow - lcpa.begin();
+        size_t lcpLengthForWindow = *lcpIteratorForWindow;
         size_t currentLcsLength = lcsIndexes.empty() ? 0 : lcsIndexes[0].subStringLength;
-        if(lcpa[lcpIndexForWindow] >= currentLcsLength) {
+        if(lcpLengthForWindow >= currentLcsLength) {
             LongestCommonSubstringIndex lcsi;
             size_t suffixIndex = suffixArray[lcpIndexForWindow];
             lcsi.stringIndex = getStringIndex(suffixIndex);
-            lcsi.subStringLength = lcpa[lcpIndexForWindow];
+            lcsi.subStringLength = lcpLengthForWindow;
             const std::string& str = strings.at(lcsi.stringIndex);
             auto it = std::search(str.begin(), str.end(),
                 concatString.begin() + suffixIndex,
                 concatString.begin() + suffixIndex + lcsi.subStringLength);
             lcsi.subStringIndex = it - str.begin();
             if(lcsi.subStringLength > currentLcsLength) lcsIndexes.clear();
-            lcsIndexes.push_back(lcsi);
+            if(!Util::Collection::contains(lcsIndexes, lcsi)) lcsIndexes.push_back(lcsi);
         }
         begin++;
     }
@@ -189,6 +203,19 @@ std::optional<std::string> findLongestCommonSubstring(
     if(result.empty()) return {};
     size_t from = result[0].subStringIndex;
     return strings.at(result[0].stringIndex).substr(from, result[0].subStringLength);
+}
+
+std::vector<std::string> findLongestCommonSubstrings(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount)
+{
+    auto result = findLongestCommonSubstringIndexes(strings, minimumStringsCount);
+    std::vector<std::string> subStrings;
+    for(LongestCommonSubstringIndex lcsIndex: result) {
+        size_t from = lcsIndex.subStringIndex;
+        subStrings.emplace_back(strings.at(lcsIndex.stringIndex).substr(from, lcsIndex.subStringLength));
+    }
+    return subStrings;
 }
 
 }
