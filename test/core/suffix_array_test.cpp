@@ -11,6 +11,15 @@ namespace AlgorithmsAndDataStructures::SuffixArrayAlgorithms::Test {
 
 using testing::ElementsAre;
 
+std::string findLongestCommonSubstringAdapter(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount = {})
+{
+    auto stringOption = findLongestCommonSubstring(strings, minimumStringsCount);
+    if(stringOption) return stringOption.value();
+    return "";
+}
+
 TEST(SuffixArrayAlgorithms, initSuffixArray) {
     ASSERT_THAT(initSuffixArray(""), ElementsAre());
     ASSERT_THAT(initSuffixArray("a"), ElementsAre(0));
@@ -75,32 +84,33 @@ TEST(SuffixArrayAlgorithms, findUniqueSubstringsCount) {
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_EQ(findLongestCommonSubstring({"ab", "cd"}), std::nullopt);
     ASSERT_EQ(findLongestCommonSubstring({"a", "b", "c"}), std::nullopt);
-    ASSERT_EQ(findLongestCommonSubstring({"ab", "ac", "ad"}), "a");
-    ASSERT_EQ(findLongestCommonSubstring({"abc", "abc", "add"}), "a");
-    ASSERT_EQ(findLongestCommonSubstring({"ab", "ab", "ab"}), "ab");
-    ASSERT_EQ(findLongestCommonSubstring({"aaa", "aaa", "aaa"}), "aaa");
-    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}), "ca");
-    ASSERT_EQ(findLongestCommonSubstring({"aabaa", "aadaa", "aacaa"}), "aa");
 
-    ASSERT_EQ(findLongestCommonSubstring({"zxybca", "zxybcd", "zxybcc"}), "zxybc");
-    ASSERT_EQ(findLongestCommonSubstring({"zxybca", "zxybcd", "zxybcc"}, 2), "zxybc");
-    ASSERT_EQ(findLongestCommonSubstring({"abzxybca", "adzxybcd", "aczxybcc"}), "zxybc");
-    ASSERT_EQ(findLongestCommonSubstring({"abzxybca", "adzxybcc", "aczxybcc"}, 2), "zxybcc");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"ab", "ac", "ad"}), "a");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abc", "abc", "add"}), "a");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"ab", "ab", "ab"}), "ab");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"aaa", "aaa", "aaa"}), "aaa");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abca", "bcad", "daca"}), "ca");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"aabaa", "aadaa", "aacaa"}), "aa");
 
-    ASSERT_EQ(findLongestCommonSubstring({"bcabc", "bdaaaabd", "beabe", "bfabababf"}), "ab");
-    ASSERT_EQ(findLongestCommonSubstring({"baaab", "caaaac", "daaaaad"}), "aaa");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"zxybca", "zxybcd", "zxybcc"}), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"zxybca", "zxybcd", "zxybcc"}, 2), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abzxybca", "adzxybcd", "aczxybcc"}), "zxybc");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abzxybca", "adzxybcc", "aczxybcc"}, 2), "zxybcc");
 
-    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 2), "bca");
-    ASSERT_EQ(findLongestCommonSubstring({"abca", "bcad", "daca"}, 3), "ca");
-    ASSERT_EQ(findLongestCommonSubstring({"abcaab", "bcaad", "daca"}, 2), "bcaa");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"bcabc", "bdaaaabd", "beabe", "bfabababf"}), "ab");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"baaab", "caaaac", "daaaaad"}), "aaa");
 
-    ASSERT_THROW(findLongestCommonSubstring({}), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({""}), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({"", ""}), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({"abc"}), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 0), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 1), std::invalid_argument);
-    ASSERT_THROW(findLongestCommonSubstring({"abc", "abc", "abc"}, 4), std::invalid_argument);
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abca", "bcad", "daca"}, 2), "bca");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abca", "bcad", "daca"}, 3), "ca");
+    ASSERT_EQ(findLongestCommonSubstringAdapter({"abcaab", "bcaad", "daca"}, 2), "bcaa");
+
+    ASSERT_THROW(findLongestCommonSubstringAdapter({}), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({""}), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({"", ""}), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({"abc"}), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({"abc", "abc", "abc"}, 0), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({"abc", "abc", "abc"}, 1), std::invalid_argument);
+    ASSERT_THROW(findLongestCommonSubstringAdapter({"abc", "abc", "abc"}, 4), std::invalid_argument);
 }
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstrings) {
@@ -171,7 +181,7 @@ TEST_F(DISABLED_SuffixArray_Complexity, findUniqueRepeatedSubstringsCount) {
 }
 
 TEST_F(DISABLED_SuffixArray_Complexity, findLongestCommonSubstring) {
-    ASSERT_EQ(findLongestCommonSubstring({randomString3, randomString3}), randomString3);
+    ASSERT_EQ(findLongestCommonSubstringAdapter({randomString3, randomString3}), randomString3);
 }
 
 }

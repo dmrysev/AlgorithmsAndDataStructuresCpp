@@ -160,7 +160,7 @@ std::vector<LongestCommonSubstringIndex> findLongestCommonSubstringIndexes(
 //    };
     auto getLcpIterator = [&] (size_t begin, size_t end) {
         auto it = lcpa.begin();
-        return std::min_element(it + begin, it + end);
+        return std::min_element(it + begin + 1, it + end + 1);
     };
     #ifndef NDEBUG
     auto suffixes = getSuffixes(concatString, suffixArray);
