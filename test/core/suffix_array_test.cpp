@@ -115,6 +115,7 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstrings) {
 //    ASSERT_THAT(findLongestCommonSubstrings({"aaZbb", "aaXbb", "aaYbb"}), ElementsAre("aa", "bb"));
+//    ASSERT_THAT(findLongestCommonSubstrings({"aaaZbbZcc", "aaXbbbXcc", "aaYbbYccc"}), ElementsAre("aa", "bb", "cc"));
 }
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {
