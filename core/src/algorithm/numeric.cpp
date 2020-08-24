@@ -11,7 +11,7 @@ int findSmallestPositiveMissingInteger(const std::vector<int>& values) {
         if(smallest != i) return smallest;
         smallest++;
     }
-    return smallest++;
+    return smallest;
 }
 
 
