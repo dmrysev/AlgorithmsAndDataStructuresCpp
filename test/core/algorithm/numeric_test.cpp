@@ -5,9 +5,6 @@
 namespace Algorithm::Numeric::Test {
 
 TEST(Algorithm_Numeric, findSmallestPositiveMissingInteger) {
-    // ARRANGE
-
-    // ACT AND ASSERT
     ASSERT_EQ(findSmallestPositiveMissingInteger({1,3,6,4,1,2}), 5);
     ASSERT_EQ(findSmallestPositiveMissingInteger({1,2,3}), 4);
     ASSERT_EQ(findSmallestPositiveMissingInteger({-1,-2}), 1);
@@ -16,6 +13,20 @@ TEST(Algorithm_Numeric, findSmallestPositiveMissingInteger) {
     ASSERT_EQ(findSmallestPositiveMissingInteger({0,1,2,3}), 4);
     ASSERT_EQ(findSmallestPositiveMissingInteger({0,1,1,2,2,4}), 3);
     ASSERT_EQ(findSmallestPositiveMissingInteger({0,1,2,3}), 4);
+}
+
+TEST(Algorithm_Numeric, findSmallestPositiveMissingInteger_random) {
+    // ARRANGE
+    std::vector<int> i1(200);
+    std::generate(i1.begin(), i1.end(), [] () {
+        static int i = -50;
+        return i++;
+    });
+    std::remove(i1.begin(), i1.end(), 101);
+    std::random_shuffle(i1.begin(), i1.end());
+
+    // ACT/ASSERT
+    ASSERT_EQ(findSmallestPositiveMissingInteger(i1), 101);
 }
 
 }
