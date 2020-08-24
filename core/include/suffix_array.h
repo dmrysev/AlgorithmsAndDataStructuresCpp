@@ -1,5 +1,6 @@
 #pragma once
 
+#include <set>
 #include <string>
 #include <vector>
 #include <optional>
@@ -42,6 +43,10 @@ std::optional<std::string> findLongestCommonSubstring(
     std::optional<size_t> minimumStringsCount = {});
 
 std::vector<std::string> findLongestCommonSubstrings(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount = {});
+
+std::set<std::string> findLongestCommonUniqueSubstrings(
     const std::vector<std::string>& strings,
     std::optional<size_t> minimumStringsCount = {});
 

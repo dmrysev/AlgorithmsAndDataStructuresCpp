@@ -113,9 +113,10 @@ TEST(SuffixArrayAlgorithms, findLongestCommonSubstring) {
     ASSERT_THROW(findLongestCommonSubstringAdapter({"abc", "abc", "abc"}, 4), std::invalid_argument);
 }
 
-TEST(SuffixArrayAlgorithms, findLongestCommonSubstrings) {
-//    ASSERT_THAT(findLongestCommonSubstrings({"aaZbb", "aaXbb", "aaYbb"}), ElementsAre("aa", "bb"));
-//    ASSERT_THAT(findLongestCommonSubstrings({"aaaZbbZcc", "aaXbbbXcc", "aaYbbYccc"}), ElementsAre("aa", "bb", "cc"));
+TEST(SuffixArrayAlgorithms, findLongestCommonUniqueSubstrings) {
+    ASSERT_THAT(findLongestCommonUniqueSubstrings({"aaZbb", "aaXbb", "aaYbb"}), ElementsAre("aa", "bb"));
+    ASSERT_THAT(findLongestCommonUniqueSubstrings({"aaaZbbZcc", "aaXbbbXcc", "aaYbbYccc"}), ElementsAre("aa", "bb", "cc"));
+    ASSERT_THAT(findLongestCommonUniqueSubstrings({"aaabbb", "bbbaaa"}), ElementsAre("aaa", "bbb"));
 }
 
 TEST(SuffixArrayAlgorithms, findLongestCommonSubstring_random) {

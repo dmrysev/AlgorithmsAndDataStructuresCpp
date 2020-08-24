@@ -218,4 +218,17 @@ std::vector<std::string> findLongestCommonSubstrings(
     return subStrings;
 }
 
+std::set<std::string> findLongestCommonUniqueSubstrings(
+    const std::vector<std::string>& strings,
+    std::optional<size_t> minimumStringsCount)
+{
+    auto result = findLongestCommonSubstringIndexes(strings, minimumStringsCount);
+    std::set<std::string> subStrings;
+    for(LongestCommonSubstringIndex lcsIndex: result) {
+        size_t from = lcsIndex.subStringIndex;
+        subStrings.insert(strings.at(lcsIndex.stringIndex).substr(from, lcsIndex.subStringLength));
+    }
+    return subStrings;
+}
+
 }
