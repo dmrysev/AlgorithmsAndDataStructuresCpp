@@ -5,12 +5,7 @@
 #include <vector>
 #include <optional>
 
-namespace Algorithm::String {
-
-size_t findSubstringsCount(const std::string& str);
-size_t findRepeatedSubstringsCount(const std::string& str);
-size_t findUniqueRepeatedSubstringsCount(const std::string& str);
-size_t findUniqueSubstringsCount(const std::string& str);
+namespace Algorithm::LongestCommonSubString {
 
 struct LongestCommonSubstringIndex {
     size_t stringIndex = 0;
