@@ -1,9 +1,9 @@
-#include "stack/check_brackets.h"
+#include "algorithm/string_validation.h"
 #include "util/collection.h"
 
 #include <stack>
 
-namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets {
+namespace Algorithm::StringValidation {
 
 using namespace Util::Collection;
 

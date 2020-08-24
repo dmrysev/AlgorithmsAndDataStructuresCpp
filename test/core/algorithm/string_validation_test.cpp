@@ -1,10 +1,10 @@
+#include "algorithm/string_validation.h"
+
 #include <gtest/gtest.h>
 
-#include "stack/check_brackets.h"
+namespace Algorithm::StringValidation::Test {
 
-namespace AlgorithmsAndDataStructures::Core::Stack::CheckBrackets::Test {
-
-TEST(Stack_CheckBrackets, checkBrackets) {
+TEST(Algorithm_StringValidation, checkBrackets) {
     ASSERT_TRUE(checkBrackets(""));
     ASSERT_TRUE(checkBrackets("[{}]"));
     ASSERT_TRUE(checkBrackets("(()())"));
