@@ -1,7 +1,11 @@
 #include "algorithm/container.h"
+#include "util/numeric.h"
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+
+#include <cmath>
+#include <mutex>
 
 using testing::ElementsAre;
 
@@ -11,6 +15,27 @@ TEST(Algorithm_Container, shiftRight) {
     ASSERT_THAT(shiftRight({3,8,9,7,6}, 3), ElementsAre(9,7,6,3,8));
     ASSERT_THAT(shiftRight({0,0,0}, 3), ElementsAre(0,0,0));
     ASSERT_THAT(shiftRight({1,2,3,4}, 4), ElementsAre(1,2,3,4));
+}
+
+class DISABLED_Algorithm_Container_Complexity: public testing::Test
+{
+protected:
+    inline static std::vector<int> testVector;
+
+    DISABLED_Algorithm_Container_Complexity() {
+        static std::once_flag flag;
+        std::call_once(flag, [&] {
+            const size_t vectorSize = std::pow(10ul, 5ul);
+            for(size_t i = 0; i < vectorSize; i++) {
+                int value = Util::Numeric::randomNumber<int>(0, 100);
+                testVector.push_back(value);
+            }
+        });
+    }
+};
+
+TEST_F(DISABLED_Algorithm_Container_Complexity, shiftRight) {
+    shiftRight(testVector, testVector.size());
 }
 
 }
