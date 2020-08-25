@@ -33,11 +33,11 @@ TEST(Algorithm_Numeric, findSmallestPositiveMissingInteger_random) {
 }
 
 TEST(Algorithm_Numeric, findLargestBinaryGap) {
+    ASSERT_EQ(findLargestBinaryGap(0), 0); // 0000
     ASSERT_EQ(findLargestBinaryGap(9), 2); // 1001
     ASSERT_EQ(findLargestBinaryGap(20), 1); // 10100
+    ASSERT_EQ(findLargestBinaryGap(15), 0); // 1111
     ASSERT_EQ(findLargestBinaryGap(529), 4); // 1000010001
-    ASSERT_EQ(findLargestBinaryGap(15), 0); // 1111
-    ASSERT_EQ(findLargestBinaryGap(15), 0); // 1111
 }
 
 }

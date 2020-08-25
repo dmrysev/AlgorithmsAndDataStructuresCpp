@@ -1,8 +1,6 @@
 #include "algorithm/numeric.h"
 #include <set>
-#include <stack>
 #include <bitset>
-#include <iostream>
 #include <algorithm>
 
 namespace Algorithm::Numeric {
