@@ -33,16 +33,17 @@ std::vector<int> shiftRightNewVectorImpl(const std::vector<int>& values, int shi
 std::vector<int> shiftRightIteratorsArithmeticImpl(const std::vector<int>& values, int shiftsCount) {
     std::vector<int> newVector;
     newVector.insert(newVector.end(), values.end() - shiftsCount, values.end());
-    newVector.insert(newVector.end(), values.begin(), values.begin() + shiftsCount - 1);
+    newVector.insert(newVector.end(), values.begin(), values.end() - shiftsCount);
     return newVector;
 }
 
 }
 
 std::vector<int> shiftRight(const std::vector<int>& values, int shiftsCount) {
+    if(values.size() <= 1) return values;
     if(shiftsCount == values.size()) return values;
     else if(shiftsCount > values.size()) shiftsCount = shiftsCount - values.size();
-    return shiftRightIteratorsArithmeticImpl(values, shiftsCount);
+    return shiftRightDequeImpl(values, shiftsCount);
 }
 
 

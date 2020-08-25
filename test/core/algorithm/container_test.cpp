@@ -12,7 +12,11 @@ using testing::ElementsAre;
 namespace Algorithm::Container::Test {
 
 TEST(Algorithm_Container, shiftRight) {
+    ASSERT_THAT(shiftRight({}, 1), ElementsAre());
+    ASSERT_THAT(shiftRight({1}, 1), ElementsAre(1));
+    ASSERT_THAT(shiftRight({3,8,9,7,6}, 1), ElementsAre(6,3,8,9,7));
     ASSERT_THAT(shiftRight({3,8,9,7,6}, 3), ElementsAre(9,7,6,3,8));
+    ASSERT_THAT(shiftRight({0,0,0}, 1), ElementsAre(0,0,0));
     ASSERT_THAT(shiftRight({0,0,0}, 2), ElementsAre(0,0,0));
     ASSERT_THAT(shiftRight({0,0,0}, 3), ElementsAre(0,0,0));
     ASSERT_THAT(shiftRight({1,2,3,4}, 4), ElementsAre(1,2,3,4));
