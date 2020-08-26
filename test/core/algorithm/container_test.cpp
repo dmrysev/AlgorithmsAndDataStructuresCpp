@@ -37,20 +37,14 @@ class DISABLED_Algorithm_Container_Complexity: public testing::Test
 protected:
     inline static std::vector<int> testVector;
 
-    DISABLED_Algorithm_Container_Complexity() {
-        static std::once_flag flag;
-        std::call_once(flag, [&] {
-            const size_t vectorSize = std::pow(10ul, 5ul);
-            for(size_t i = 0; i < vectorSize; i++) {
-                int value = Util::Numeric::randomNumber<int>(0, 100);
-                testVector.push_back(value);
-            }
-        });
+    static void SetUpTestCase() {
+        const size_t vectorSize = std::pow(10ul, 7ul);
+        testVector = std::vector<int>(vectorSize);
     }
 };
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, shiftRight) {
-    shiftRight(testVector, testVector.size());
+    shiftRight(testVector, testVector.size() / 2);
 }
 
 }

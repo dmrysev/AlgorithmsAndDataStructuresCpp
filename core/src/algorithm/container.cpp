@@ -45,7 +45,7 @@ std::vector<int> shiftRight(const std::vector<int>& values, int shiftsCount) {
     if(values.size() <= 1) return values;
     if(shiftsCount == values.size()) return values;
     else if(shiftsCount > values.size()) shiftsCount = shiftsCount - values.size();
-    return shiftRightDequeImpl(values, shiftsCount);
+    return shiftRightIteratorsArithmeticImpl(values, shiftsCount);
 }
 
 int findUnpairedValue(const std::vector<int>& values) {
