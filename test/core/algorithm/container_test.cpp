@@ -36,15 +36,23 @@ class DISABLED_Algorithm_Container_Complexity: public testing::Test
 {
 protected:
     inline static std::vector<int> testVector;
+    inline static std::vector<int> testVector2;
 
     static void SetUpTestCase() {
         const size_t vectorSize = std::pow(10ul, 7ul);
         testVector = std::vector<int>(vectorSize);
+
+        testVector2 = testVector;
+        testVector2.push_back(1);
     }
 };
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, shiftRight) {
     shiftRight(testVector, testVector.size() / 2);
+}
+
+TEST_F(DISABLED_Algorithm_Container_Complexity, findUnpairedValue) {
+    ASSERT_EQ(findUnpairedValue(testVector2), 1);
 }
 
 }
