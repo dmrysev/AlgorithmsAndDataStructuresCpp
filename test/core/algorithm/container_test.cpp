@@ -41,7 +41,10 @@ protected:
         const size_t vectorSize = std::pow(10ul, 6ul);
         testVector = std::vector<int>(vectorSize);
 
-        testVector2 = testVector;
+        for(size_t i = 0; i < vectorSize; i++) {
+            int value = i % (vectorSize / 2);
+            testVector2.push_back(value);
+        }
         testVector2.push_back(1);
     }
 };
