@@ -65,7 +65,6 @@ int findUnpairedValue(const std::vector<int>& values) {
     if(unpairedValues.empty()) throw std::runtime_error{"Unpaired value was not found"};
     if(unpairedValues.size() > 1) throw std::runtime_error{"More than one unpaired value was found"};
     return unpairedValues.front();
-    return 0;
 }
 
 
