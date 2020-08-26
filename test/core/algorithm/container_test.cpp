@@ -27,9 +27,8 @@ TEST(Algorithm_Container, findUnpairedValue) {
     ASSERT_EQ(findUnpairedValue({2}), 2);
     ASSERT_EQ(findUnpairedValue({5,3,5}), 3);
     ASSERT_EQ(findUnpairedValue({9,3,9,3,9,7,9}), 7);
-
-    ASSERT_THROW(findUnpairedValue({}), std::invalid_argument);
-    ASSERT_THROW(findUnpairedValue({1, 2}), std::invalid_argument);
+    ASSERT_EQ(findUnpairedValue({1,1,2,2,3}), 3);
+    ASSERT_EQ(findUnpairedValue({3,1,1,7,2,2,3}), 7);
 }
 
 class DISABLED_Algorithm_Container_Complexity: public testing::Test
@@ -39,7 +38,7 @@ protected:
     inline static std::vector<int> testVector2;
 
     static void SetUpTestCase() {
-        const size_t vectorSize = std::pow(10ul, 7ul);
+        const size_t vectorSize = std::pow(10ul, 6ul);
         testVector = std::vector<int>(vectorSize);
 
         testVector2 = testVector;

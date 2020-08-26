@@ -1,5 +1,6 @@
 #include "algorithm/container.h"
 
+#include <map>
 #include <deque>
 #include <stdexcept>
 #include <algorithm>
@@ -49,18 +50,10 @@ std::vector<int> shiftRight(const std::vector<int>& values, int shiftsCount) {
 }
 
 int findUnpairedValue(const std::vector<int>& values) {
-    if(values.empty()) throw std::invalid_argument{"values must be non empty"};
-    if(values.size() % 2 == 0) throw std::invalid_argument{"values must contain odd number of elements"};
-    if(values.size() == 1) return values.front();
-    std::vector<int> unpairedValues;
-    for(int i: values) {
-        auto it = std::find(unpairedValues.begin(), unpairedValues.end(), i);
-        if(it == unpairedValues.end()) unpairedValues.push_back(i);
-        else  unpairedValues.erase(it);
-    }
-    if(unpairedValues.empty()) throw std::runtime_error{"Unpaired value was not found"};
-    if(unpairedValues.size() > 1) throw std::runtime_error{"More than one unpaired value was found"};
-    return unpairedValues.front();
+    std::unordered_map<int, bool> unpairedValues;
+    for(int i: values) unpairedValues[i] = !unpairedValues[i];
+    for(auto& pair: unpairedValues) if(pair.second == true) return pair.first;
+    throw std::runtime_error{"Unpaired value was not found"};
 }
 
 
