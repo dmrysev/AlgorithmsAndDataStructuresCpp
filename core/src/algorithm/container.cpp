@@ -1,9 +1,11 @@
 #include "algorithm/container.h"
 
 #include <map>
+#include <set>
 #include <deque>
 #include <stdexcept>
 #include <algorithm>
+#include <unordered_set>
 
 namespace Algorithm::Container {
 
@@ -49,11 +51,37 @@ std::vector<int> shiftRight(const std::vector<int>& values, int shiftsCount) {
     return shiftRightIteratorsArithmeticImpl(values, shiftsCount);
 }
 
-int findUnpairedValue(const std::vector<int>& values) {
+namespace {
+
+int findUnpairedValuePreInitVectorImpl(const std::vector<int>& values) {
+    std::vector<bool> unpairedValues(1000000000);
+    for(int i: values) unpairedValues[i] = !unpairedValues[i];
+    auto it = std::find(unpairedValues.begin(), unpairedValues.end(), true);
+    if(it == unpairedValues.end()) throw std::runtime_error{"Unpaired value was not found"};
+    return it - unpairedValues.begin();
+}
+
+int findUnpairedValueUnorderedSetImpl(const std::vector<int>& values) {
+    std::unordered_set<int> unpairedValues;
+    for(int i: values) {
+        auto it = unpairedValues.find(i);
+        if(it == unpairedValues.end()) unpairedValues.insert(i);
+        else unpairedValues.erase(it);
+    }
+    return *unpairedValues.begin();
+}
+
+int findUnpairedValueUnorderedMapImpl(const std::vector<int>& values) {
     std::unordered_map<int, bool> unpairedValues;
     for(int i: values) unpairedValues[i] = !unpairedValues[i];
     for(auto& pair: unpairedValues) if(pair.second == true) return pair.first;
     throw std::runtime_error{"Unpaired value was not found"};
+}
+
+}
+
+int findUnpairedValue(const std::vector<int>& values) {
+    return findUnpairedValueUnorderedSetImpl(values);
 }
 
 
