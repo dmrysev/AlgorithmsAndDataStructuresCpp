@@ -9,9 +9,9 @@
 
 namespace Algorithm::Container {
 
-namespace {
+namespace ShiftRightImpl {
 
-std::vector<int> shiftRightDequeImpl(const std::vector<int>& values, int shiftsCount) {
+std::vector<int> deque(const std::vector<int>& values, int shiftsCount) {
     std::deque<int> deque{values.begin(), values.end()};
     for(int i = 0; i < shiftsCount; i++) {
         int back = deque.back();
@@ -21,7 +21,7 @@ std::vector<int> shiftRightDequeImpl(const std::vector<int>& values, int shiftsC
     return {deque.begin(), deque.end()};
 }
 
-std::vector<int> shiftRightNewVectorImpl(const std::vector<int>& values, int shiftsCount) {
+std::vector<int> newVector(const std::vector<int>& values, int shiftsCount) {
     std::vector<int> newVector(values.size());
     for(int i = 0; i < values.size(); i++) {
         if(i + shiftsCount < values.size()) {
@@ -35,7 +35,7 @@ std::vector<int> shiftRightNewVectorImpl(const std::vector<int>& values, int shi
     return newVector;
 }
 
-std::vector<int> shiftRightIteratorsArithmeticImpl(const std::vector<int>& values, int shiftsCount) {
+std::vector<int> iteratorArithmetic(const std::vector<int>& values, int shiftsCount) {
     std::vector<int> newVector;
     newVector.insert(newVector.end(), values.end() - shiftsCount, values.end());
     newVector.insert(newVector.end(), values.begin(), values.end() - shiftsCount);
@@ -48,12 +48,12 @@ std::vector<int> shiftRight(const std::vector<int>& values, int shiftsCount) {
     if(values.size() <= 1) return values;
     if(shiftsCount == values.size()) return values;
     else if(shiftsCount > values.size()) shiftsCount = shiftsCount - values.size();
-    return shiftRightIteratorsArithmeticImpl(values, shiftsCount);
+    return ShiftRightImpl::iteratorArithmetic(values, shiftsCount);
 }
 
-namespace {
+namespace FindUnpairedValueImpl {
 
-int findUnpairedValuePreInitVectorImpl(const std::vector<int>& values) {
+int preInitVector(const std::vector<int>& values) {
     std::vector<bool> unpairedValues(1000000000);
     for(int i: values) unpairedValues[i] = !unpairedValues[i];
     auto it = std::find(unpairedValues.begin(), unpairedValues.end(), true);
@@ -61,7 +61,7 @@ int findUnpairedValuePreInitVectorImpl(const std::vector<int>& values) {
     return it - unpairedValues.begin();
 }
 
-int findUnpairedValueUnorderedSetImpl(const std::vector<int>& values) {
+int unorderedSet(const std::vector<int>& values) {
     std::unordered_set<int> unpairedValues;
     for(int i: values) {
         auto it = unpairedValues.find(i);
@@ -71,7 +71,7 @@ int findUnpairedValueUnorderedSetImpl(const std::vector<int>& values) {
     return *unpairedValues.begin();
 }
 
-int findUnpairedValueUnorderedMapImpl(const std::vector<int>& values) {
+int unorderedMap(const std::vector<int>& values) {
     std::unordered_map<int, bool> unpairedValues;
     for(int i: values) unpairedValues[i] = !unpairedValues[i];
     for(auto& pair: unpairedValues) if(pair.second == true) return pair.first;
@@ -81,7 +81,7 @@ int findUnpairedValueUnorderedMapImpl(const std::vector<int>& values) {
 }
 
 int findUnpairedValue(const std::vector<int>& values) {
-    return findUnpairedValueUnorderedSetImpl(values);
+    return FindUnpairedValueImpl::unorderedSet(values);
 }
 
 
