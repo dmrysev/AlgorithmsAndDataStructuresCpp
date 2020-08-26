@@ -55,12 +55,8 @@ int findUnpairedValue(const std::vector<int>& values) {
     std::vector<int> unpairedValues;
     for(int i: values) {
         auto it = std::find(unpairedValues.begin(), unpairedValues.end(), i);
-        if(it == unpairedValues.end()) {
-            unpairedValues.push_back(i);
-        }
-        else {
-            unpairedValues.erase(it);
-        }
+        if(it == unpairedValues.end()) unpairedValues.push_back(i);
+        else  unpairedValues.erase(it);
     }
     if(unpairedValues.empty()) throw std::runtime_error{"Unpaired value was not found"};
     if(unpairedValues.size() > 1) throw std::runtime_error{"More than one unpaired value was found"};
