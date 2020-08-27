@@ -149,9 +149,29 @@ int tapeEquilibrium(const std::vector<int>& values) {
     return TapeEquilibriumImpl::usingPrefixSum(values);
 }
 
-bool canBeBalanced(const std::vector<int>& valuesA, const std::vector<int>& valuesB) {
+namespace FindEarliestAvailablePathImpl {
 
-    return false;
+int vectorOfBools(const std::vector<int>& values, int distance) {
+    std::vector<bool> path(values.size() + 1, false);
+    path[0] = true;
+    auto isPathAvailable = [&] {
+        for(size_t i = 1; i <= distance; i++) {
+            if(path[i] == false) return false;
+        }
+        return true;
+    };
+    for(size_t i = 0; i < values.size(); i++) {
+        int value = values[i];
+        path[value] = true;
+        if(isPathAvailable()) return i;
+    }
+    return -1;
+}
+
+}
+
+int findEarliestAvailablePath(const std::vector<int>& values, int distance) {
+    return FindEarliestAvailablePathImpl::vectorOfBools(values, distance);
 }
 
 }

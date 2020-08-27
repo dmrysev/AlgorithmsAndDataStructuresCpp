@@ -53,16 +53,19 @@ TEST(Algorithm_Container, tapeEquilibrium) {
     ASSERT_EQ(tapeEquilibrium({3,1,2,4,3}), 1);
 }
 
-TEST(Algorithm_Container, canBeBalanced) {
-    ASSERT_EQ(canBeBalanced({1}, {1}), true);
-    ASSERT_EQ(canBeBalanced({1,2}, {1,2}), true);
-    ASSERT_EQ(canBeBalanced({1}, {1,2}), true);
-    ASSERT_EQ(canBeBalanced({4,7}, {3}), true);
-    ASSERT_EQ(canBeBalanced({1,3}, {7,5}), true);
+TEST(Algorithm_Container, findEarliestAvailablePath) {
+    ASSERT_EQ(findEarliestAvailablePath({1}, 1), 0);
+    ASSERT_EQ(findEarliestAvailablePath({1,2}, 2), 1);
+    ASSERT_EQ(findEarliestAvailablePath({1,2,3,4}, 2), 1);
+    ASSERT_EQ(findEarliestAvailablePath({3,2,1,4}, 4), 3);
+    ASSERT_EQ(findEarliestAvailablePath({4,2,1,3}, 4), 3);
+    ASSERT_EQ(findEarliestAvailablePath({2,4,3,1}, 4), 3);
+    ASSERT_EQ(findEarliestAvailablePath({2,4,3,1,5}, 4), 3);
+    ASSERT_EQ(findEarliestAvailablePath({2,3,1,2,2,4,6,5}, 4), 5);
+    ASSERT_EQ(findEarliestAvailablePath({1,3,1,4,2,3,5,4}, 5), 6);
 
-    ASSERT_EQ(canBeBalanced({1}, {2}), false);
-    ASSERT_EQ(canBeBalanced({5}, {3,1}), false);
-    ASSERT_EQ(canBeBalanced({1,3}, {2,3}), false);
+    ASSERT_EQ(findEarliestAvailablePath({1}, 2), -1);
+    ASSERT_EQ(findEarliestAvailablePath({2,3,1}, 4), -1);
 }
 
 class DISABLED_Algorithm_Container_Complexity: public testing::Test
@@ -71,6 +74,7 @@ protected:
     inline static std::vector<int> testVector;
     inline static std::vector<int> testVector2;
     inline static std::vector<int> testVector3;
+    inline static std::vector<int> testVector4;
     inline static int testVector3MissingElement;
 
     static void SetUpTestCase() {
@@ -91,6 +95,11 @@ protected:
             testVector3.erase(std::find(testVector3.begin(), testVector3.end(), testVector3MissingElement));
             std::random_shuffle(testVector3.begin(), testVector3.end());
         }
+
+        testVector4.reserve(vectorSize);
+        for(size_t i = 1; i < vectorSize; i++) {
+            testVector4.push_back(i);
+        }
     }
 };
 
@@ -109,6 +118,10 @@ TEST_F(DISABLED_Algorithm_Container_Complexity, findMissingElement) {
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, tapeEquilibrium) {
     tapeEquilibrium(testVector2);
+}
+
+TEST_F(DISABLED_Algorithm_Container_Complexity, findEarliestAvailablePath) {
+    findEarliestAvailablePath(testVector4, testVector4.size() - 2);
 }
 
 }
