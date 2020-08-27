@@ -168,10 +168,25 @@ int vectorOfBools(const std::vector<int>& values, int distance) {
     return -1;
 }
 
+int usingIndexesMap(const std::vector<int>& values, int distance) {
+    int maxIndex = 0;
+    std::unordered_map<int, int> valuesIndexes;
+    for(int i = 0; i < values.size(); i++) {
+        int value = values[i];
+        if(valuesIndexes.count(value) == 0) valuesIndexes[value] = i;
+    }
+    for(int i = 1; i <= distance; i++) {
+        if(valuesIndexes.count(i) == 0) return -1;
+        int index = valuesIndexes[i];
+        if(index > maxIndex) maxIndex = index;
+    }
+    return maxIndex;
+}
+
 }
 
 int findEarliestAvailablePath(const std::vector<int>& values, int distance) {
-    return FindEarliestAvailablePathImpl::vectorOfBools(values, distance);
+    return FindEarliestAvailablePathImpl::usingIndexesMap(values, distance);
 }
 
 }
