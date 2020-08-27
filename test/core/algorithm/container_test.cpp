@@ -31,6 +31,12 @@ TEST(Algorithm_Container, findUnpairedValue) {
     ASSERT_EQ(findUnpairedValue({3,1,1,7,2,2,3}), 7);
 }
 
+TEST(Algorithm_Container, findMissingElement) {
+    ASSERT_EQ(findMissingElement({1,3}), 2);
+    ASSERT_EQ(findMissingElement({3,1}), 2);
+    ASSERT_EQ(findMissingElement({2,3,1,5}), 4);
+}
+
 class DISABLED_Algorithm_Container_Complexity: public testing::Test
 {
 protected:
