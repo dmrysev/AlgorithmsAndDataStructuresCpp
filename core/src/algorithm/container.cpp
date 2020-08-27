@@ -84,14 +84,33 @@ int findUnpairedValue(const std::vector<int>& values) {
     return FindUnpairedValueImpl::unorderedSet(values);
 }
 
-int findMissingElement(const std::vector<int>& values) {
-    std::set<int> sortedValues{values.begin(), values.end()};
+namespace FindMissingElementImpl {
+
+int usingSet(const std::vector<int>& values) {
+    std::set sortedValues(values.begin(), values.end());
     auto it = std::adjacent_find(sortedValues.begin(), sortedValues.end(), [&] (int a, int b) {
         return b - a > 1;
     });
     if(it == sortedValues.end()) throw std::runtime_error{"Missing element was not found"};
     int missingElement = *it;
     return ++missingElement;
+}
+
+int usingSortedVector(const std::vector<int>& values) {
+    auto sortedValues = values;
+    std::sort(sortedValues.begin(), sortedValues.end());
+    auto it = std::adjacent_find(sortedValues.begin(), sortedValues.end(), [&] (int a, int b) {
+        return b - a > 1;
+    });
+    if(it == sortedValues.end()) throw std::runtime_error{"Missing element was not found"};
+    int missingElement = *it;
+    return ++missingElement;
+}
+
+}
+
+int findMissingElement(const std::vector<int>& values) {
+    return FindMissingElementImpl::usingSortedVector(values);
 }
 
 

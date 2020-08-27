@@ -42,6 +42,8 @@ class DISABLED_Algorithm_Container_Complexity: public testing::Test
 protected:
     inline static std::vector<int> testVector;
     inline static std::vector<int> testVector2;
+    inline static std::vector<int> testVector3;
+    inline static int testVector3MissingElement;
 
     static void SetUpTestCase() {
         const size_t vectorSize = std::pow(10ul, 6ul);
@@ -52,6 +54,15 @@ protected:
             testVector2.push_back(value);
         }
         testVector2.push_back(1);
+
+        {
+            for(size_t i = 0; i < vectorSize; i++) {
+                testVector3.push_back(i);
+            }
+            testVector3MissingElement = vectorSize / 2;
+            testVector3.erase(std::find(testVector3.begin(), testVector3.end(), testVector3MissingElement));
+            std::random_shuffle(testVector3.begin(), testVector3.end());
+        }
     }
 };
 
@@ -61,6 +72,11 @@ TEST_F(DISABLED_Algorithm_Container_Complexity, shiftRight) {
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, findUnpairedValue) {
     ASSERT_EQ(findUnpairedValue(testVector2), 1);
+}
+
+TEST_F(DISABLED_Algorithm_Container_Complexity, findMissingElement) {
+    int result = findMissingElement(testVector3);
+//    ASSERT_EQ(result, testVector3MissingElement);
 }
 
 }
