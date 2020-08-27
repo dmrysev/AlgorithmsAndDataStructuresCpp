@@ -1,4 +1,5 @@
 #include "algorithm/container.h"
+#include "data_structure/prefix_sum.h"
 
 #include <map>
 #include <set>
@@ -131,12 +132,8 @@ int naiveApproach(const std::vector<int>& values) {
 }
 
 int usingPrefixSum(const std::vector<int>& values) {
-    std::vector<int> prefixSum(values.size() + 1);
-    prefixSum[0] = 0;
     int smallestDifference = std::numeric_limits<int>::max();
-    for(size_t i = 0; i < values.size(); i++) {
-        prefixSum[i+1] = prefixSum[i] + values[i];
-    }
+    auto prefixSum = DataStructure::PrefixSum::initPrefixSum(values);
     for(size_t i = 0; i < values.size() - 1; i++) {
         int firstHalfSum = prefixSum[i+1] - prefixSum.front();
         int secondHalfSum = prefixSum.back() - prefixSum[i+1];

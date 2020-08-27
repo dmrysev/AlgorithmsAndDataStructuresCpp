@@ -57,9 +57,11 @@ TEST(Algorithm_Container, canBeBalanced) {
     ASSERT_EQ(canBeBalanced({1}, {1}), true);
     ASSERT_EQ(canBeBalanced({1,2}, {1,2}), true);
     ASSERT_EQ(canBeBalanced({1}, {1,2}), true);
+    ASSERT_EQ(canBeBalanced({4,7}, {3}), true);
     ASSERT_EQ(canBeBalanced({1,3}, {7,5}), true);
 
     ASSERT_EQ(canBeBalanced({1}, {2}), false);
+    ASSERT_EQ(canBeBalanced({5}, {3,1}), false);
     ASSERT_EQ(canBeBalanced({1,3}, {2,3}), false);
 }
 
