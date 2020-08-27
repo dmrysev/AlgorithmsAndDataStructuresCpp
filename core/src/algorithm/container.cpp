@@ -183,10 +183,25 @@ int usingIndexesMap(const std::vector<int>& values, int distance) {
     return maxIndex;
 }
 
+int usingIndexesArray(const std::vector<int>& values, int distance) {
+    int maxIndex = 0;
+    std::vector<int> indexArray(distance + 1, -1);
+    for(int i = 0; i < values.size(); i++) {
+        int value = values[i];
+        if(indexArray[value] == -1) indexArray[value] = i;
+    }
+    for(int i = 1; i <= distance; i++) {
+        if(indexArray[i] == -1) return -1;
+        int index = indexArray[i];
+        if(index > maxIndex) maxIndex = index;
+    }
+    return maxIndex;
+}
+
 }
 
 int findEarliestAvailablePath(const std::vector<int>& values, int distance) {
-    return FindEarliestAvailablePathImpl::usingIndexesMap(values, distance);
+    return FindEarliestAvailablePathImpl::usingIndexesArray(values, distance);
 }
 
 }

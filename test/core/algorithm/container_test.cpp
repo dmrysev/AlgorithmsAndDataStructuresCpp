@@ -126,7 +126,7 @@ TEST_F(DISABLED_Algorithm_Container_Complexity, tapeEquilibrium) {
 }
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, findEarliestAvailablePath) {
-    findEarliestAvailablePath(testVector4, testVector4.size() - 2);
+    ASSERT_EQ(findEarliestAvailablePath(testVector4, testVector4.size()), testVector4.size() - 1);
 }
 
 }
