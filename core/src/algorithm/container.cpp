@@ -152,5 +152,9 @@ int tapeEquilibrium(const std::vector<int>& values) {
     return TapeEquilibriumImpl::usingPrefixSum(values);
 }
 
+bool canBeBalanced(const std::vector<int>& valuesA, const std::vector<int>& valuesB) {
+
+    return false;
+}
 
 }

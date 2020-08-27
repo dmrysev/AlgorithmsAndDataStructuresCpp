@@ -53,6 +53,16 @@ TEST(Algorithm_Container, tapeEquilibrium) {
     ASSERT_EQ(tapeEquilibrium({3,1,2,4,3}), 1);
 }
 
+TEST(Algorithm_Container, canBeBalanced) {
+    ASSERT_EQ(canBeBalanced({1}, {1}), true);
+    ASSERT_EQ(canBeBalanced({1,2}, {1,2}), true);
+    ASSERT_EQ(canBeBalanced({1}, {1,2}), true);
+    ASSERT_EQ(canBeBalanced({1,3}, {7,5}), true);
+
+    ASSERT_EQ(canBeBalanced({1}, {2}), false);
+    ASSERT_EQ(canBeBalanced({1,3}, {2,3}), false);
+}
+
 class DISABLED_Algorithm_Container_Complexity: public testing::Test
 {
 protected:
