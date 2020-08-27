@@ -111,11 +111,11 @@ int usingSortedVector(const std::vector<int>& values) {
     return ++missingElement;
 }
 
-int usingBoolArray(const std::vector<int>& values) {
-    std::vector<bool> indexArray(1000000, false);
+int usingIndexArray(const std::vector<int>& values) {
+    std::vector<bool> indexArray(values.size() + 1, false);
     for(int i = 0; i < values.size(); i++) {
         int value = values[i];
-        if(value < 1) continue;
+        if(value < 1 || value >= indexArray.size()) continue;
         indexArray[value] = true;
     }
     auto it = std::find(indexArray.begin() + 1, indexArray.end(), false);
@@ -126,7 +126,7 @@ int usingBoolArray(const std::vector<int>& values) {
 
 int findMissingElement(const std::vector<int>& values) {
     if(values.empty()) return 1;
-    return FindMissingElementImpl::usingBoolArray(values);
+    return FindMissingElementImpl::usingIndexArray(values);
 }
 
 namespace TapeEquilibriumImpl {

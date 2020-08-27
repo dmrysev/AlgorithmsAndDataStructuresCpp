@@ -47,6 +47,8 @@ TEST(Algorithm_Container, findMissingElement) {
     ASSERT_EQ(findMissingElement({2,1,1}), 3);
     ASSERT_EQ(findMissingElement({1,1,2,2}), 3);
     ASSERT_EQ(findMissingElement({1,1,3,3}), 2);
+    ASSERT_EQ(findMissingElement({1,2,4,9}), 3);
+    ASSERT_EQ(findMissingElement({1,2,3,9}), 4);
     std::vector<int> i1;
     i1.push_back(-1);
     i1.push_back(-3);
