@@ -99,6 +99,8 @@ int usingSet(const std::vector<int>& values) {
 int usingSortedVector(const std::vector<int>& values) {
     auto sortedValues = values;
     std::sort(sortedValues.begin(), sortedValues.end());
+    if(sortedValues.front() != 1) return 1;
+    if(sortedValues.back() != values.size() + 1) return values.size() + 1;
     auto it = std::adjacent_find(sortedValues.begin(), sortedValues.end(), [&] (int a, int b) {
         return b - a > 1;
     });
@@ -110,6 +112,7 @@ int usingSortedVector(const std::vector<int>& values) {
 }
 
 int findMissingElement(const std::vector<int>& values) {
+    if(values.empty()) return 1;
     return FindMissingElementImpl::usingSortedVector(values);
 }
 

@@ -32,6 +32,12 @@ TEST(Algorithm_Container, findUnpairedValue) {
 }
 
 TEST(Algorithm_Container, findMissingElement) {
+    ASSERT_EQ(findMissingElement({}), 1);
+    ASSERT_EQ(findMissingElement({1}), 2);
+    ASSERT_EQ(findMissingElement({2}), 1);
+    ASSERT_EQ(findMissingElement({2,1}), 3);
+    ASSERT_EQ(findMissingElement({3,1}), 2);
+    ASSERT_EQ(findMissingElement({2,3}), 1);
     ASSERT_EQ(findMissingElement({1,3}), 2);
     ASSERT_EQ(findMissingElement({3,1}), 2);
     ASSERT_EQ(findMissingElement({2,3,1,5}), 4);
