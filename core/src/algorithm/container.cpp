@@ -111,11 +111,22 @@ int usingSortedVector(const std::vector<int>& values) {
     return ++missingElement;
 }
 
+int usingBoolArray(const std::vector<int>& values) {
+    std::vector<bool> indexArray(1000000, false);
+    for(int i = 0; i < values.size(); i++) {
+        int value = values[i];
+        if(value < 1) continue;
+        indexArray[value] = true;
+    }
+    auto it = std::find(indexArray.begin() + 1, indexArray.end(), false);
+    return it - indexArray.begin();
+}
+
 }
 
 int findMissingElement(const std::vector<int>& values) {
     if(values.empty()) return 1;
-    return FindMissingElementImpl::usingSortedVector(values);
+    return FindMissingElementImpl::usingBoolArray(values);
 }
 
 namespace TapeEquilibriumImpl {
@@ -168,7 +179,7 @@ int vectorOfBools(const std::vector<int>& values, int distance) {
     return -1;
 }
 
-int usingIndexesMap(const std::vector<int>& values, int distance) {
+int usingIndexMap(const std::vector<int>& values, int distance) {
     int maxIndex = 0;
     std::unordered_map<int, int> valuesIndexes;
     for(int i = 0; i < values.size(); i++) {
@@ -183,7 +194,7 @@ int usingIndexesMap(const std::vector<int>& values, int distance) {
     return maxIndex;
 }
 
-int usingIndexesArray(const std::vector<int>& values, int distance) {
+int usingIndexArray(const std::vector<int>& values, int distance) {
     int maxIndex = 0;
     std::vector<int> indexArray(distance + 1, -1);
     for(int i = 0; i < values.size(); i++) {
@@ -201,7 +212,7 @@ int usingIndexesArray(const std::vector<int>& values, int distance) {
 }
 
 int findEarliestAvailablePath(const std::vector<int>& values, int distance) {
-    return FindEarliestAvailablePathImpl::usingIndexesArray(values, distance);
+    return FindEarliestAvailablePathImpl::usingIndexArray(values, distance);
 }
 
 }

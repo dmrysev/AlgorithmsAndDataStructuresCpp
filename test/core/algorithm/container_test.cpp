@@ -40,7 +40,17 @@ TEST(Algorithm_Container, findMissingElement) {
     ASSERT_EQ(findMissingElement({2,3}), 1);
     ASSERT_EQ(findMissingElement({1,3}), 2);
     ASSERT_EQ(findMissingElement({3,1}), 2);
+    ASSERT_EQ(findMissingElement({3,4,2}), 1);
+    ASSERT_EQ(findMissingElement({3,1,2}), 4);
     ASSERT_EQ(findMissingElement({2,3,1,5}), 4);
+    ASSERT_EQ(findMissingElement({4,5,6,2}), 1);
+    ASSERT_EQ(findMissingElement({2,1,1}), 3);
+    ASSERT_EQ(findMissingElement({1,1,2,2}), 3);
+    ASSERT_EQ(findMissingElement({1,1,3,3}), 2);
+    std::vector<int> i1;
+    i1.push_back(-1);
+    i1.push_back(-3);
+    ASSERT_EQ(findMissingElement(i1), 1);
 }
 
 TEST(Algorithm_Container, tapeEquilibrium) {
@@ -117,8 +127,7 @@ TEST_F(DISABLED_Algorithm_Container_Complexity, findUnpairedValue) {
 }
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, findMissingElement) {
-    int result = findMissingElement(testVector3);
-    ASSERT_EQ(result, testVector3MissingElement);
+    findMissingElement(testVector3);
 }
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, tapeEquilibrium) {

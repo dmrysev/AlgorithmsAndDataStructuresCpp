@@ -1,4 +1,5 @@
 #include "algorithm/numeric.h"
+#include "data_structure/prefix_sum.h"
 #include <set>
 #include <bitset>
 #include <algorithm>
@@ -37,6 +38,11 @@ int findLargestBinaryGap(int n) {
     }
     auto largestGapSize = std::max_element(gapSizes.begin(), gapSizes.end());
     return *largestGapSize;
+}
+
+int countDivisible(int from, int to, int divisor) {
+//    auto prefixSum = DataStructure::PrefixSum::initPrefixSum()
+    return 0;
 }
 
 
