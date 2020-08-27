@@ -3,6 +3,7 @@
 #include <map>
 #include <set>
 #include <deque>
+#include <numeric>
 #include <stdexcept>
 #include <algorithm>
 #include <unordered_set>
@@ -114,6 +115,41 @@ int usingSortedVector(const std::vector<int>& values) {
 int findMissingElement(const std::vector<int>& values) {
     if(values.empty()) return 1;
     return FindMissingElementImpl::usingSortedVector(values);
+}
+
+namespace TapeEquilibriumImpl {
+
+int naiveApproach(const std::vector<int>& values) {
+    int smallestDifference = std::numeric_limits<int>::max();
+    for(size_t i = 1; i < values.size(); i++) {
+        int firstHalfSum = std::accumulate(values.begin(), values.begin() + i, 0);
+        int secondHalfSum = std::accumulate(values.begin() + i, values.end(), 0);
+        int difference = std::abs(firstHalfSum - secondHalfSum);
+        if(difference < smallestDifference) smallestDifference = difference;
+    }
+    return smallestDifference;
+}
+
+int usingPrefixSum(const std::vector<int>& values) {
+    std::vector<int> prefixSum(values.size() + 1);
+    prefixSum[0] = 0;
+    int smallestDifference = std::numeric_limits<int>::max();
+    for(size_t i = 0; i < values.size(); i++) {
+        prefixSum[i+1] = prefixSum[i] + values[i];
+    }
+    for(size_t i = 0; i < values.size() - 1; i++) {
+        int firstHalfSum = prefixSum[i+1] - prefixSum.front();
+        int secondHalfSum = prefixSum.back() - prefixSum[i+1];
+        int difference = std::abs(firstHalfSum - secondHalfSum);
+        if(difference < smallestDifference) smallestDifference = difference;
+    }
+    return smallestDifference;
+}
+
+}
+
+int tapeEquilibrium(const std::vector<int>& values) {
+    return TapeEquilibriumImpl::usingPrefixSum(values);
 }
 
 

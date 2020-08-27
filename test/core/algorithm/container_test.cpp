@@ -43,6 +43,16 @@ TEST(Algorithm_Container, findMissingElement) {
     ASSERT_EQ(findMissingElement({2,3,1,5}), 4);
 }
 
+TEST(Algorithm_Container, tapeEquilibrium) {
+    ASSERT_EQ(tapeEquilibrium({1,1}), 0);
+    ASSERT_EQ(tapeEquilibrium({1,1}), 0);
+    ASSERT_EQ(tapeEquilibrium({1,2}), 1);
+    ASSERT_EQ(tapeEquilibrium({-4,1,8}), 11);
+    ASSERT_EQ(tapeEquilibrium({6,3}), 3);
+    ASSERT_EQ(tapeEquilibrium({1,4,9}), 4);
+    ASSERT_EQ(tapeEquilibrium({3,1,2,4,3}), 1);
+}
+
 class DISABLED_Algorithm_Container_Complexity: public testing::Test
 {
 protected:
@@ -82,7 +92,11 @@ TEST_F(DISABLED_Algorithm_Container_Complexity, findUnpairedValue) {
 
 TEST_F(DISABLED_Algorithm_Container_Complexity, findMissingElement) {
     int result = findMissingElement(testVector3);
-//    ASSERT_EQ(result, testVector3MissingElement);
+    ASSERT_EQ(result, testVector3MissingElement);
+}
+
+TEST_F(DISABLED_Algorithm_Container_Complexity, tapeEquilibrium) {
+    tapeEquilibrium(testVector2);
 }
 
 }
