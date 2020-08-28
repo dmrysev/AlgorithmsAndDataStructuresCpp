@@ -50,25 +50,22 @@ int naive(int from, int to, int divisor) {
     return count;
 }
 
-int faster(int from, int to, int divisor) {
-    int count = 0;
-    int increment = 1;
-    for(int i = from; i < to; i += increment) {
-        if(i % divisor == 0) count++;
-        if(i == divisor) {
-            count += (to - from) / divisor;
-            break;
+int fast(int from, int to, int divisor) {
+    for(int i = from; i <= to; i++) {
+        if(i % divisor == 0) {
+            int diff = to - i;
+            int rem = diff % divisor;
+            int result = (diff - rem) / divisor + 1;
+            return result;
         }
-
     }
-    return count;
+    return 0;
 }
 
 }
 
 int countDivisible(int from, int to, int divisor) {
-    return CountDivisibleImpl::faster(from, to, divisor);
+    return CountDivisibleImpl::fast(from, to, divisor);
 }
-
 
 }

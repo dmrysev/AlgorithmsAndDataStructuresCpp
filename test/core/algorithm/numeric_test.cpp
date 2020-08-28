@@ -45,15 +45,21 @@ TEST(Algorithm_Numeric, countDivisible) {
     ASSERT_EQ(countDivisible(0, 1, 1), 2);
     ASSERT_EQ(countDivisible(0, 2, 1), 3);
     ASSERT_EQ(countDivisible(0, 3, 2), 2);
+    ASSERT_EQ(countDivisible(1, 4, 2), 2);
+    ASSERT_EQ(countDivisible(3, 6, 2), 2);
     ASSERT_EQ(countDivisible(0, 4, 2), 3);
     ASSERT_EQ(countDivisible(5, 5, 5), 1);
     ASSERT_EQ(countDivisible(5, 6, 5), 1);
     ASSERT_EQ(countDivisible(5, 6, 6), 1);
     ASSERT_EQ(countDivisible(6, 11, 2), 3);
     ASSERT_EQ(countDivisible(6, 15, 2), 5);
+    ASSERT_EQ(countDivisible(7, 15, 4), 2);
     ASSERT_EQ(countDivisible(1, 1, 2), 0);
     ASSERT_EQ(countDivisible(5, 5, 6), 0);
     ASSERT_EQ(countDivisible(1, 5, 6), 0);
+    ASSERT_EQ(countDivisible(15, 276, 43), 6);
+    ASSERT_EQ(countDivisible(23, 986, 5), 193);
+    ASSERT_EQ(countDivisible(48, 3477, 234), 14);
 }
 
 class DISABLED_Algorithm_Numeric_Complexity: public testing::Test {};
