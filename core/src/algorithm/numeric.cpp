@@ -40,9 +40,20 @@ int findLargestBinaryGap(int n) {
     return *largestGapSize;
 }
 
+namespace CountDivisibleImpl {
+
+int naive(int from, int to, int divisor) {
+    int count = 0;
+    for(int i = from; i <= to; i++) {
+        if(i % divisor == 0) count++;
+    }
+    return count;
+}
+
+}
+
 int countDivisible(int from, int to, int divisor) {
-//    auto prefixSum = DataStructure::PrefixSum::initPrefixSum()
-    return 0;
+    return CountDivisibleImpl::naive(from, to, divisor);
 }
 
 
