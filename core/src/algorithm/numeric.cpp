@@ -3,6 +3,7 @@
 #include <set>
 #include <bitset>
 #include <algorithm>
+#include <stdexcept>
 
 namespace Algorithm::Numeric {
 
@@ -51,15 +52,23 @@ int naive(int from, int to, int divisor) {
 }
 
 int fast(int from, int to, int divisor) {
-    for(int i = from; i <= to; i++) {
-        if(i % divisor == 0) {
-            int diff = to - i;
-            int rem = diff % divisor;
-            int result = (diff - rem) / divisor + 1;
-            return result;
-        }
+    if(divisor > to) {
+        if(from == 0) return 1;
+        return 0;
     }
-    return 0;
+    int firstDivisable = [&] {
+        if(from == 0) return from;
+        if(divisor >= from) return divisor;
+        for(int i = from; i <= to; i++) {
+            if(i % divisor == 0) return i;
+        }
+        return -1;
+    }();
+    if(firstDivisable == -1) return 0;
+    int diff = to - firstDivisable;
+    int rem = diff % divisor;
+    int result = (diff - rem) / divisor + 1;
+    return result;
 }
 
 }

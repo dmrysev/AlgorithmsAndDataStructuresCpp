@@ -4,10 +4,16 @@
 
 using namespace Algorithm::Numeric;
 
+int naive(int from, int to, int divisor) {
+    int count = 0;
+    for(int i = from; i <= to; i++) {
+        if(i % divisor == 0) count++;
+    }
+    return count;
+}
+
 int main() {
-    std::cout << countDivisible(15, 276, 43) << std::endl;
-    std::cout << countDivisible(23, 986, 5) << std::endl;
-    std::cout << countDivisible(48, 3477, 234) << std::endl;
+    std::cout << naive(27, 276, 34) << std::endl;
 
     return 0;
 }
